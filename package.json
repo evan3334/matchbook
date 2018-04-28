@@ -1,0 +1,12 @@
+{
+  "name": "matchbook",
+  "version": "0.0.1",
+  "author": "",
+  "dependencies": {
+    "uuid": "^3.2.1"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": "0.8.x"
+  }
+}
