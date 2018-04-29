@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "author": "",
   "dependencies": {
-    "uuid": "^3.2.1"
+    "uuid": "^3.2.1",
+    "mongodb":"~2.2.35"
   },
   "devDependencies": {},
   "engines": {
