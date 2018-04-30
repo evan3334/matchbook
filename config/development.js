@@ -40,7 +40,7 @@ var config = {
   db: {
     mongo: {
       username: null
-    , dbname: 'production'
+    , dbname: 'matchbook'
     , prefix: null
     , password: null
     , host: 'localhost'

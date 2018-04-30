@@ -20,14 +20,14 @@ var config = {
   appName: 'Matchbook'
 , detailedErrors: false
 , hostname: null
-, port: 4000
+, port: 80
 , model: {
     defaultAdapter: 'mongo'
   }
 , db: {
     mongo: {
       username: null
-    , dbname: 'production'
+    , dbname: 'matchbook'
     , prefix: null
     , password: null
     , host: 'localhost'
