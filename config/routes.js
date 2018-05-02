@@ -27,6 +27,7 @@ module.exports.routes = {
   '/': {
     view: 'pages/homepage'
   },
+  '/listings/': 'listings.viewall'
 
   /***************************************************************************
   *                                                                          *

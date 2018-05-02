@@ -1,0 +1,17 @@
+<div class="page-title" style="text-align: center;">
+    <% if(all){ %>
+    <h1>All Listings</h1>
+    <% } else { %>
+    <h1>Search Results</h1>
+    <% } %>
+</div>
+<div class="results-container" style="text-align: center;">
+    <% if(results && results.length > 0){ %>
+        <% for (var i=0; i< results.length; i++){ %>
+            <% var current = results[i];%>
+            <b><%= current.title %></b> (<%= current.isbn%>)
+        <%}%>
+    <% } else { %>
+    <h3>Sorry, no results. Please try different search criteria.</h3>
+    <% } %>
+</div>
