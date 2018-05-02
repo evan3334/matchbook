@@ -14,6 +14,11 @@ module.exports = {
     price: {
       type: 'number',
       required: true
+    },
+    uuid: {
+      type: 'string',
+      required: true,
+      isUUID: true
     }
   }
 };

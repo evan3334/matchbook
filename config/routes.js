@@ -27,7 +27,12 @@ module.exports.routes = {
   '/': {
     view: 'pages/homepage'
   },
-  '/listings/': 'listings.viewall'
+  '/listings/': 'listings.viewall',
+  'POST /listings/create': 'listings.create',
+  'GET /listings/create': {
+    view: 'pages/createlisting'
+  },
+  '/listings/:uuid': 'listings.viewone'
 
   /***************************************************************************
   *                                                                          *
