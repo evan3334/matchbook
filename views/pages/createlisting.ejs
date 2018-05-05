@@ -15,7 +15,7 @@
     }
 
     function validateISBN(isbn){
-      return /[0-9]{10}$/.test(isbn) || /[0-9]{13}$/.test(isbn);
+      return /^[0-9]{10}$/.test(isbn) || /^[0-9]{13}$/.test(isbn);
     }
 
     function hideSubmit(){
