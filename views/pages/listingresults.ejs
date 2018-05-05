@@ -2,6 +2,9 @@
     <div class="large-button right text-center">
         <a class="large-button-inner" href="/listings/create">Post listing &gt;</a>
     </div>
+    <div class="large-button left text-center">
+        <a class="large-button-inner" href="/">&lt; Back to home</a>
+    </div>
 </div>
 <div class="page-title" style="text-align: center;">
     <% if(all){ %>
@@ -15,6 +18,7 @@
         <% for (var i = 0; i < results.length; i++){ %>
             <% var current = results[i]; %>
             <a href="/listings/<%= current.uuid %>"><b><%= current.title %></b> (<%= current.isbn %>)</a>
+            <br>
         <% } %>
     <% } else { %>
         <h3>Sorry, no results. Please try different search criteria.</h3>
