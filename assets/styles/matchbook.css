@@ -1,45 +1,64 @@
 .large-button {
-    border: 2px solid #00ff00;
-    background-color: transparent;
+  border: 2px solid #00ff00;
+  background-color: transparent;
 }
 
-.large-button:hover{
-    background-color: #00ff00;
-    border: 2px solid #00ff00;
+.large-button:hover {
+  background-color: #00ff00;
+  border: 2px solid #00ff00;
 }
 
 .large-button-inner {
-    padding: 20px 10px;
-    display: block;
-    color:black;
-    text-align: center;
-    font-family: sans-serif;
-    text-decoration: none;
+  padding: 20px 10px;
+  display: block;
+  color: black;
+  text-align: center;
+  font-family: sans-serif;
+  text-decoration: none;
 }
 
 .large-button-inner:hover {
-    padding: 20px 10px;
-    text-align: center;
-    display: block;
-    color: white;
-    font-family: sans-serif;
-    text-decoration: none;
+  padding: 20px 10px;
+  text-align: center;
+  display: block;
+  color: white;
+  font-family: sans-serif;
+  text-decoration: none;
 }
 
 .left {
-    float: left;
+  float: left;
 }
 
 .right {
-    float: right;
+  float: right;
 }
 
 .center {
-    width: 200px;
-    margin: 0 auto;
-    text-align: center;
+  width: 200px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .text-center {
-    text-align: center;
+  text-align: center;
+}
+
+.validation-result {
+  font-size: 10pt;
+  font-family: sans-serif;
+  margin:auto;
+}
+
+.validation-failed {
+  color: #ff0000;
+}
+
+.validation-success {
+  color: #008000;
+}
+
+.top-button-container {
+  width: 100%;
+  display: inline-block;
 }

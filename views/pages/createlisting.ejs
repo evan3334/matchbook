@@ -1,14 +1,69 @@
+<script>
+    function validateForm(){
+      let element = document.getElementsByClassName('isbn-input')[0];
+      return !!validateISBN(element.value);
+    }
+
+    function doValidation(element, value){
+      let resultElement = document.getElementsByClassName('validation-result')[0];
+      if(validateISBN(value)){
+        success(resultElement);
+      }
+      else{
+        failure(resultElement);
+      }
+    }
+
+    function validateISBN(isbn){
+      return /[0-9]{10}$/.test(isbn) || /[0-9]{13}$/.test(isbn);
+    }
+
+    function hideSubmit(){
+      let submitElements = document.getElementsByClassName('submit');
+      for(let i =0; i< submitElements.length; i++){
+        submitElements[i].hidden = true;
+      }
+    }
+
+    function showSubmit(){
+      let submitElements = document.getElementsByClassName('submit');
+      for(let i =0; i< submitElements.length; i++){
+        submitElements[i].hidden = false;
+      }
+    }
+
+    function success(element){
+      element.classList.remove('validation-failed');
+      element.classList.add('validation-success');
+      element.innerText = "ISBN ok :)";
+      showSubmit();
+    }
+
+    function failure(element){
+      element.classList.remove('validation-success');
+      element.classList.add('validation-failed');
+      element.innerText = "Must be a valid ISBN";
+      hideSubmit();
+    }
+</script>
+
+<div class="top-button-container">
+    <div class="large-button left text-center">
+        <a class="large-button-inner" href="/listings/">&lt; Back to listings</a>
+    </div>
+</div>
 <div class="page-title" style="text-align: center;">
     <h1>Create a new listing</h1>
 </div>
 <div class="form-content" style="text-align: center;">
-    <form action="/listings/create"  method="post">
+    <form onsubmit="return validateForm()" action="/listings/create"  method="post">
         Book ISBN:<br>
-        <input type="text" name="isbn" required><br>
+        <input oninput="doValidation(this, this.value)" class="isbn-input" type="text" name="isbn" required>
+        <p class="validation-result">Must be a valid ISBN</p>
         Book Title:<br>
         <input type="text" name="title" required><br>
         Book Price (USD):<br>
         <input type="number" name="price" min="0" step="0.01" required><br>
-        <input type="submit" value="Create">
+        <input class="submit" hidden type="submit" value="Create">
     </form>
 </div>

@@ -1,17 +1,22 @@
+<div class="top-button-container">
+    <div class="large-button right text-center">
+        <a class="large-button-inner" href="/listings/create">Post listing &gt;</a>
+    </div>
+</div>
 <div class="page-title" style="text-align: center;">
     <% if(all){ %>
-    <h1>All Listings</h1>
+        <h1>All Listings</h1>
     <% } else { %>
-    <h1>Search Results</h1>
+        <h1>Search Results</h1>
     <% } %>
 </div>
 <div class="results-container" style="text-align: center;">
     <% if(results && results.length > 0){ %>
-        <% for (var i=0; i< results.length; i++){ %>
-            <% var current = results[i];%>
-    <a href="/listings/<%= current.uuid%>"><b><%= current.title %></b> (<%= current.isbn%>)</a>
-        <%}%>
+        <% for (var i = 0; i < results.length; i++){ %>
+            <% var current = results[i]; %>
+            <a href="/listings/<%= current.uuid %>"><b><%= current.title %></b> (<%= current.isbn %>)</a>
+        <% } %>
     <% } else { %>
-    <h3>Sorry, no results. Please try different search criteria.</h3>
+        <h3>Sorry, no results. Please try different search criteria.</h3>
     <% } %>
 </div>
