@@ -1,0 +1,25 @@
+<div class="page-title" style="text-align: center;">
+    <h1>Register New Account</h1>
+</div>
+<% if(typeof taken!== 'undefined' && taken){%>
+<div class="text-center">
+    <p style="color: red; font-family:sans-serif">That email address is already in use!</p>
+</div>
+<br>
+<%}%>
+<div class="login-form-content text-center">
+    <form action="/register/" method="post">
+        <p class="form-label">Name</p>
+        <input type="text" name="name" required title="Name">
+        <p class="form-label">E-mail Address</p>
+        <input type="email" name="email" required title="E-mail Address">
+        <p class="form-label">Password</p>
+        <input type="password" name="password" required title="Password">
+        <br>
+        <input type="submit" value="Register">
+    </form>
+</div>
+<br>
+<div class="text-center">
+    <a href="/login">I already have an account &gt;</a>
+</div>

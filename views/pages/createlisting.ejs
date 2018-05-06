@@ -55,15 +55,15 @@
 <div class="page-title" style="text-align: center;">
     <h1>Create a new listing</h1>
 </div>
-<div class="form-content" style="text-align: center;">
+<div class="form-content text-center">
     <form onsubmit="return validateForm()" action="/listings/create"  method="post">
         Book ISBN:<br>
-        <input oninput="doValidation(this, this.value)" class="isbn-input" type="text" name="isbn" required>
+        <input oninput="doValidation(this, this.value)" class="isbn-input" type="text" name="isbn" required title="Book ISBN:">
         <p class="validation-result">Must be a valid ISBN</p>
         Book Title:<br>
-        <input type="text" name="title" required><br>
+        <input type="text" name="title" required title="Book Title:"><br>
         Book Price (USD):<br>
-        <input type="number" name="price" min="0" step="0.01" required><br>
+        <input type="number" name="price" min="0" step="0.01" required title="Book Price (USD):"><br>
         <input class="submit" hidden type="submit" value="Create">
     </form>
 </div>

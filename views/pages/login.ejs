@@ -1,0 +1,23 @@
+<div class="page-title" style="text-align: center;">
+    <h1>Login</h1>
+</div>
+<% if(typeof failure !== "undefined" && failure==true){%>
+    <div class="text-center">
+        <p style="color: red; font-family:sans-serif">Incorrect email address or password!</p>
+    </div>
+    <br>
+<% }%>
+<div class="login-form-content text-center">
+    <form action="/login/" method="post">
+        <p class="form-label">E-mail Address</p>
+        <input type="email" name="email" required title="E-mail Address">
+        <p class="form-label">Password</p>
+        <input type="password" name="password" required title="Password">
+        <br>
+        <input type="submit" value="Login">
+    </form>
+</div>
+<br>
+<div class="text-center">
+    <a href="/register">Sign up for a new account &gt;</a>
+</div>

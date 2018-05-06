@@ -34,7 +34,7 @@
   float: right;
 }
 
-.center {
+.center-button {
   width: 200px;
   margin: 0 auto;
   text-align: center;
@@ -61,4 +61,8 @@
 .top-button-container {
   width: 100%;
   display: inline-block;
+}
+
+.form-label{
+  font-family: sans-serif;
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>New Sails App</title>
+    <title>Matchbook</title>
 
     <!-- Viewport mobile tag for sensible mobile support -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -29,12 +29,15 @@
     -->
 
     <!--STYLES-->
-    <link rel="stylesheet" href="/styles/importer.css">
     <link rel="stylesheet" href="/styles/matchbook.css">
     <!--STYLES END-->
   </head>
 
   <body>
+    <!-- TODO add a menu bar of some kind here -->
+    <% if (req.session.me){%>
+      You are logged in as <%= req.session.me.name %>
+    <% } %>
     <%- body %>
 
 
