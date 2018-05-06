@@ -18,7 +18,8 @@ module.exports = {
     uuid: {
       type: 'string',
       required: true,
-      isUUID: true
+      isUUID: true,
+      unique: true
     }
   }
 };
