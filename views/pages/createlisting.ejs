@@ -64,6 +64,7 @@
         <input type="text" name="title" required title="Book Title:"><br>
         Book Price (USD):<br>
         <input type="number" name="price" min="0" step="0.01" required title="Book Price (USD):"><br>
+        <input type="hidden" name="_csrf" value="<%= _csrf %>" />
         <input class="submit" hidden type="submit" value="Create">
     </form>
 </div>
