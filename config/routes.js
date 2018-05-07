@@ -24,22 +24,14 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': {
-    view: 'pages/homepage'
-  },
+  '/': 'pages.homepage',
   '/listings/': 'listings.viewall',
   'POST /listings/create': 'listings.create',
-  'GET /listings/create': {
-    view: 'pages/createlisting'
-  },
+  'GET /listings/create': 'pages.createpage',
   '/listings/:uuid': 'listings.viewone',
-  'GET /login/': {
-    view: 'pages/login'
-  },
+  'GET /login/': 'pages.loginpage',
   'POST /login/': 'users.login',
-  'GET /register/': {
-    view: 'pages/register'
-  },
+  'GET /register/': 'pages.registerpage',
   'POST /register/': 'users.register',
   'GET /logout/': 'users.logout'
 
