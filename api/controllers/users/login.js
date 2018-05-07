@@ -14,12 +14,12 @@ module.exports = {
       description: 'The un-hashed password for login',
       type: 'string',
       required: true
-    }//,
-    /*redirect: {
+    },
+    redirect: {
       description: 'The page to redirect to after success. Used when the user is trying to access something that requires login, so the user can start where they left off.',
       required: false,
       type: 'string'
-    }*/
+    }
   },
 
   exits: {
@@ -51,7 +51,11 @@ module.exports = {
     if(pwResult===true){
       //if we got here, the password was right
       this.req.session.me = user;
-      return exits.success('/');
+      let redirectPage = '/';
+      if(inputs.redirect){
+        redirectPage = decodeURIComponent(inputs.redirect);
+      }
+      return exits.success(redirectPage);
     }
     else{
       return exits.failure({failure: true});

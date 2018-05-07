@@ -18,5 +18,6 @@ module.exports.policies = {
   ***************************************************************************/
 
   // '*': true,
-
+  'pages/*':true,
+  'pages/createpage':'isLoggedIn'
 };

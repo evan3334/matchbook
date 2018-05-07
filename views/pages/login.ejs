@@ -8,7 +8,11 @@
     <br>
 <% }%>
 <div class="login-form-content text-center">
-    <form action="/login/" method="post">
+    <% if(typeof redirect !== 'undefined' && typeof redirect === 'string'){%>
+    <form action="/login?redirect=<%=redirect%>" method="post">
+    <% } else {%>
+    <form action="/login" method="post">
+    <%}%>
         <p class="form-label">E-mail Address</p>
         <input type="email" name="email" required title="E-mail Address">
         <p class="form-label">Password</p>

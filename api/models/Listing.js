@@ -20,6 +20,9 @@ module.exports = {
       required: true,
       isUUID: true,
       unique: true
+    },
+    creator:{
+      model: 'user'
     }
   }
 };
