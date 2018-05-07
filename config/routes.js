@@ -40,7 +40,8 @@ module.exports.routes = {
   'GET /register/': {
     view: 'pages/register'
   },
-  'POST /register/': 'users.register'
+  'POST /register/': 'users.register',
+  'GET /logout/': 'users.logout'
 
   /***************************************************************************
   *                                                                          *

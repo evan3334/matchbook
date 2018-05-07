@@ -36,7 +36,7 @@
   <body>
     <!-- TODO add a menu bar of some kind here -->
     <% if (req.session.me){%>
-      You are logged in as <%= req.session.me.name %>
+      You are logged in as <%= req.session.me.name %> (<a href="/logout">Log Out</a>)
     <% } else {%>
     You are not logged in. (<a href="/login">Login</a> or <a href="/register">Register</a>)
     <% }%>
