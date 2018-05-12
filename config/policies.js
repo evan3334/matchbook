@@ -22,5 +22,5 @@ module.exports.policies = {
   'pages/createpage':'isLoggedIn',
   'listings/create':'isLoggedIn',
   'pages/editpage':'isLoggedIn',
-  'istings/edit':'isLoggedIn'
+  'listings/edit':'isLoggedIn'
 };
