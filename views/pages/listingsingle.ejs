@@ -4,15 +4,15 @@
     </div>
 </div>
 <% if(listing) { %>
-<div class="page-title" style="text-align: center;">
-    <span style="font-family: sans-serif; font-size: 16px">Listing ID </span>
+<div class="page-title text-center">
+    <span style="font-family: sans-serif; font-size: 16px"></span>
     <span style="font-family: monospace; font-size: 16px"><%= listing.uuid %></span>
 </div>
-<div class="listing-properties" style="text-align: center;">
+<div class="listing-properties text-center">
     <p style="font-family: monospace">
         <%= JSON.stringify(listing, null, 2)%>
     </p>
 </div>
 <% } else { %>
-<div style="text-align: center;"><h1>ERROR: Listing could not be displayed</h1></div>
+<div class="text-center"><h1>ERROR: Listing could not be displayed</h1></div>
 <% } %>

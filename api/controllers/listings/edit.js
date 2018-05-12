@@ -2,11 +2,17 @@ var uuid = require('uuid');
 
 module.exports = {
 
-  friendlyName: 'Create New Listing',
+  friendlyName: 'Edit Existing Listing',
 
-  description: 'Create a new listing with the given parameters',
+  description: 'Update an existing listing with the given parameters',
 
   inputs: {
+    uuid: {
+      description: 'The UUID of the listing to update',
+      type: 'string',
+      required: true,
+      isUUID: true
+    },
     title: {
       description: 'The title of the book',
       type: 'string',
@@ -44,17 +50,27 @@ module.exports = {
     let user = this.req.session.me;
     let objId = user.id;
     try {
-      var listing = await Listing.create({
-        title: inputs.title,
-        isbn: inputs.isbn,
-        price: inputs.price,
-        uuid: uuid.v4(),
-        creator: objId
-      }).fetch();
-      return exits.displayListing("/listings/"+listing.uuid);
+      var listing = await Listing.findOne({uuid: inputs.uuid}).populate('creator');
+      if(listing){
+        if(listing.creator.uuid === user.uuid){
+          var newlisting = await Listing.update({uuid:inputs.uuid},{
+            title:inputs.title,
+            isbn: inputs.isbn,
+            price: inputs.price,
+            creator: objId
+          }).fetch();
+          return exits.displayListing('/listings/'+inputs.uuid);
+        }
+        else{
+          return this.res.forbidden();
+        }
+      }
+      else{
+        return this.res.notFound();
+      }
     }
     catch(e){
-      return exits.error();
+      return this.res.serverError(e);
     }
   }
 

@@ -33,7 +33,10 @@ module.exports.routes = {
   'POST /login/': 'users.login',
   'GET /register/': 'pages.registerpage',
   'POST /register/': 'users.register',
-  'GET /logout/': 'users.logout'
+  'GET /logout/': 'users.logout',
+  'GET /listings/:uuid/edit': 'pages.editpage',
+  'POST /listings/:uuid/edit': 'listings.edit',
+
 
   /***************************************************************************
   *                                                                          *

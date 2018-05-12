@@ -22,7 +22,12 @@ module.exports = {
       unique: true
     },
     creator:{
-      model: 'user'
+      model: 'user',
+      required: true
+    },
+    description: {
+      type: 'string',
+      required: false
     }
   }
 };

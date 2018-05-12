@@ -19,5 +19,8 @@ module.exports.policies = {
 
   // '*': true,
   'pages/*':true,
-  'pages/createpage':'isLoggedIn'
+  'pages/createpage':'isLoggedIn',
+  'listings/create':'isLoggedIn',
+  'pages/editpage':'isLoggedIn',
+  'istings/edit':'isLoggedIn'
 };

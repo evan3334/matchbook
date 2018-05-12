@@ -30,7 +30,7 @@ module.exports = {
 
   fn: async function (inputs, exits){
     try {
-      var listing = await Listing.findOne({uuid: inputs.uuid});
+      var listing = await Listing.findOne({uuid: inputs.uuid}).populate('creator');
       if (listing == null) {
         return exits.notFound();
       }
