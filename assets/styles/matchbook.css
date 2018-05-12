@@ -66,3 +66,27 @@
 .form-label{
   font-family: sans-serif;
 }
+
+.listing-title{
+  font-family: sans-serif;
+  font-size: 16px;
+}
+
+.listing-property-title{
+  list-style: none;
+  font-family: sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.listing-property-container{
+  list-style: none;
+  padding: auto;
+}
+
+.listing-property-value{
+  list-style: none;
+  font-family: sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+}

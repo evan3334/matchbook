@@ -5,14 +5,31 @@
 </div>
 <% if(listing) { %>
 <div class="page-title text-center">
-    <span style="font-family: sans-serif; font-size: 16px"></span>
-    <span style="font-family: monospace; font-size: 16px"><%= listing.uuid %></span>
+    <span class="listing-title"><%= listing.title %></span>
 </div>
 <div class="listing-properties text-center">
-    <p style="font-family: monospace">
-        <%= JSON.stringify(listing, null, 2)%>
-    </p>
+    <ul>
+        <li class="listing-property-container">
+            <span class="listing-property-title">Sold By: </span>
+            <span class="listing-property-value"><%= listing.creator.name %></span>
+        </li>
+        <li class="listing-property-container">
+            <span class="listing-property-title">ISBN: </span>
+            <span class="listing-property-value"><%= listing.isbn %></span>
+        </li>
+        <li class="listing-property-container">
+            <span class="listing-property-title">Price: </span>
+            <span class="listing-property-value"><%= listing.price %></span>
+        </li>
+    </ul>
 </div>
+<% if(owner){ %>
+
+    <div class="large-button center-button text-center">
+        <a class="large-button-inner" href="/listings/<%= listing.uuid %>/edit">Edit this listing &gt;</a>
+    </div>
+
+<% } %>
 <% } else { %>
 <div class="text-center"><h1>ERROR: Listing could not be displayed</h1></div>
 <% } %>

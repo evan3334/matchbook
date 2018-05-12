@@ -35,7 +35,11 @@ module.exports = {
         return exits.notFound();
       }
       else{
-        return exits.success({listing:listing});
+        var owner = false;
+        if(this.req.session.me && this.req.session.me.uuid === listing.creator.uuid){
+          owner = true;
+        }
+        return exits.success({listing:listing, owner: owner});
       }
     }
     catch(e){
