@@ -36,6 +36,8 @@ module.exports.routes = {
   'GET /logout/': 'users.logout',
   'GET /listings/:uuid/edit': 'pages.editpage',
   'POST /listings/:uuid/edit': 'listings.edit',
+  'GET /listings/:uuid/delete' : 'pages.deletepage',
+  'POST /listings/:uuid/delete' : 'listings.delete',
 
 
   /***************************************************************************

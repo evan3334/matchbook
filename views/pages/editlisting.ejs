@@ -46,15 +46,15 @@
       hideSubmit();
     }
 
-    window.onload = validateForm();
+    window.onload = validateForm;
 </script>
 
 <div class="top-button-container">
-    <div class="large-button left text-center">
+    <div class="large-button-green left text-center">
         <a class="large-button-inner" href="/listings/<%= listing.uuid %>">&lt; Back to listing</a>
     </div>
 </div>
-<div class="page-title" style="text-align: center;">
+<div class="page-title text-center">
     <h1>Edit listing <%= listing.uuid %></h1>
 </div>
 <div class="form-content text-center">
@@ -67,6 +67,6 @@
         Book Price (USD):<br>
         <input type="number" name="price" min="0" step="0.01" required value="<%= listing.price %>" title="Book Price (USD):"><br>
         <input type="hidden" name="_csrf" value="<%= _csrf %>" />
-        <input class="submit" hidden type="submit" value="Update">
+        <input class="submit" type="submit" value="Update">
     </form>
 </div>

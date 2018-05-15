@@ -1,35 +1,75 @@
+<script>
+    function openModal(){
+      var overlay = document.getElementsByClassName('modal-overlay')[0];
+      overlay.style.visibility = 'visible';
+    }
+
+    function closeModal(){
+      var overlay = document.getElementsByClassName('modal-overlay')[0];
+      overlay.style.visibility = 'hidden';
+    }
+
+    function reallyDelete(){
+      var form = document.getElementsByClassName('delete-confirm-form')[0];
+      form.submit();
+    }
+
+    window.addEventListener('load',function(){
+      openModal();
+    }, false);
+</script>
+
 <div class="top-button-container">
-    <div class="large-button left text-center">
+    <div class="large-button-green left text-center">
         <a class="large-button-inner" href="/listings/">&lt; Back to listings</a>
     </div>
 </div>
 <% if(listing) { %>
-<div class="page-title text-center">
-    <span class="listing-title"><%= listing.title %></span>
-</div>
-<div class="listing-properties text-center">
-    <ul>
-        <li class="listing-property-container">
-            <span class="listing-property-title">Sold By: </span>
-            <span class="listing-property-value"><%= listing.creator.name %></span>
-        </li>
-        <li class="listing-property-container">
-            <span class="listing-property-title">ISBN: </span>
-            <span class="listing-property-value"><%= listing.isbn %></span>
-        </li>
-        <li class="listing-property-container">
-            <span class="listing-property-title">Price: </span>
-            <span class="listing-property-value"><%= listing.price %></span>
-        </li>
-    </ul>
-</div>
-<% if(owner){ %>
-
-    <div class="large-button center-button text-center">
-        <a class="large-button-inner" href="/listings/<%= listing.uuid %>/edit">Edit this listing &gt;</a>
+    <div class="page-title text-center">
+        <span class="listing-title"><%= listing.title %></span>
     </div>
+    <div class="listing-properties text-center">
+        <ul>
+            <li class="listing-property-container">
+                <span class="listing-property-title">Sold By: </span>
+                <span class="listing-property-value"><%= listing.creator.name %></span>
+            </li>
+            <li class="listing-property-container">
+                <span class="listing-property-title">ISBN: </span>
+                <span class="listing-property-value"><%= listing.isbn %></span>
+            </li>
+            <li class="listing-property-container">
+                <span class="listing-property-title">Price: </span>
+                <span class="listing-property-value"><%= listing.price %></span>
+            </li>
+        </ul>
+    </div>
+    <% if(owner){ %>
+        <div class="large-button-green center-button text-center">
+            <a class="large-button-inner" href="/listings/<%= listing.uuid %>/edit">Edit this listing &gt;</a>
+        </div>
+        <div class="large-button-red center-button text-center" onclick="openModal()">
+            <span class="large-button-inner">Delete this listing</span>
+        </div>
+        <div class="modal-overlay" style="visibility: hidden">
 
-<% } %>
+            <div class="modal-dialog-box text-center">
+                <p class="page-title">Really delete this listing?</p>
+                <p class="page-subtitle">It will be lost forever, and there is no way to recover it!</p>
+                <div class="large-button-green left" onclick="closeModal()">
+                    <span class="large-button-inner">&lt; Cancel</span>
+                </div>
+                <div class="large-button-red right" onclick="reallyDelete()">
+                    <span class="large-button-inner">Delete</span>
+                </div>
+                <form class="delete-confirm-form" action="/listings/<%= listing.uuid %>/delete" method="post">
+                    <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+                </form>
+            </div>
+        </div>
+        <% } %>
 <% } else { %>
-<div class="text-center"><h1>ERROR: Listing could not be displayed</h1></div>
+<div class="text-center">
+    <h1>ERROR: Listing could not be displayed</h1>
+</div>
 <% } %>

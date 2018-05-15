@@ -1,11 +1,39 @@
-.large-button {
+.page-title {
+  font-family: sans-serif;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.page-subtitle {
+  font-family: sans-serif;
+  text-align: center;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.large-button-green {
+  cursor: pointer;
   border: 2px solid #00ff00;
   background-color: transparent;
 }
 
-.large-button:hover {
+.large-button-green:hover {
+  cursor: pointer;
   background-color: #00ff00;
   border: 2px solid #00ff00;
+}
+
+.large-button-red {
+  cursor: pointer;
+  border: 2px solid #ff0000;
+  background-color: transparent;
+}
+
+.large-button-red:hover {
+  cursor: pointer;
+  background-color: #ff0000;
+  border: 2px solid #ff0000;
 }
 
 .large-button-inner {
@@ -89,4 +117,26 @@
   font-family: sans-serif;
   font-size: 14px;
   font-weight: normal;
+}
+
+.modal-overlay {
+  position:fixed;
+  display:block;
+  bottom:0;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 99;
+  background-color: rgba(50,50,50, 0.5);
+}
+.modal-dialog-box {
+  overflow: auto;
+  position:relative;
+  max-width:500px;
+  margin: auto;
+  border-radius:10px;
+  padding: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255,255,255,1.0);
 }

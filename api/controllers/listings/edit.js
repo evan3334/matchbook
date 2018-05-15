@@ -39,10 +39,6 @@ module.exports = {
   exits: {
     displayListing: {
       responseType: 'redirect'
-    },
-    error: {
-      description: 'Something went wrong on our end.',
-      statusCode: 500
     }
   },
 
