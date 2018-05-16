@@ -1,10 +1,9 @@
+<% function formatprice(price){
+   return price.toFixed(2);
+}%>
 <div class="top-button-container">
-    <div class="large-button-green right text-center">
-        <a class="large-button-inner" href="/listings/create">Post listing &gt;</a>
-    </div>
-    <div class="large-button-green left text-center">
-        <a class="large-button-inner" href="/">&lt; Back to home</a>
-    </div>
+    <a class="large-button-green right text-center"href="/listings/create">Post listing &gt;</a>
+    <a class="large-button-green left text-center" href="/">&lt; Back to home</a>
 </div>
 <div class="page-title" style="text-align: center;">
     <% if(all){ %>
@@ -13,12 +12,25 @@
         <h1>Search Results</h1>
     <% } %>
 </div>
-<div class="results-container" style="text-align: center;">
+<div class="listings-container">
     <% if(results && results.length > 0){ %>
         <% for (var i = 0; i < results.length; i++){ %>
             <% var current = results[i]; %>
-            <a href="/listings/<%= current.uuid %>"><b><%= current.title %></b> (<%= current.isbn %>)</a>
-            <br>
+            <a class="listing-link" href="/listings/<%= current.uuid %>">
+            <div class="listing-container">
+                <div class="cover-container">
+                    <img class="listing-cover" src="http://www.lucasspanish.org/wp-content/uploads/2015/03/Red-Book.jpg"/>
+                </div>
+                <div class="property-container">
+                    <p class="listing-title" ><%= current.title %></p>
+                    <p class="listing-authors">Listing Authors here</p>
+                    <p class="listing-isbn"><b>ISBN: </b><%= current.isbn %></p>
+                    <p class="listing-price">$<%= formatprice(current.price) %></p>
+                    <p class="listing-seller"><b>Sold By: </b><%= current.creator.name %></p>
+                </div>
+            </div>
+            </a>
+
         <% } %>
     <% } else { %>
         <h3>Sorry, no results. Please try different search criteria.</h3>

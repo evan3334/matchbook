@@ -34,14 +34,16 @@ module.exports = {
 
   fn: async function (inputs, exits){
     var listings;
+    var all = true;
     try {
       if (inputs.isbn) {
-        listings = await Listing.find({isbn: inputs.isbn});
+        listings = await Listing.find({isbn: inputs.isbn}).populate('creator');
+        all=false;
       }
       else {
-        listings = await Listing.find();
+        listings = await Listing.find().populate('creator');
       }
-      return exits.success({all: true, results: listings});
+      return exits.success({all: all, results: listings});
     }
     catch(e){
       return exits.error();

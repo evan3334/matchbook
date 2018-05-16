@@ -14,9 +14,11 @@
       form.submit();
     }
 
+    <%if (typeof showDelete !== 'undefined' && showDelete){ %>
     window.addEventListener('load',function(){
       openModal();
     }, false);
+    <%}%>
 </script>
 
 <div class="top-button-container">

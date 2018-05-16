@@ -13,45 +13,43 @@
 }
 
 .large-button-green {
+  font-family: sans-serif;
+  text-decoration:none;
+  font-size: 16px;
+  font-weight:bold;
+  padding: 10px 10px;
+  border: 2px solid #008a00;
   cursor: pointer;
-  border: 2px solid #00ff00;
-  background-color: transparent;
+  border-radius:10px;
+  background-color: white;
+  transition: background-color 250ms, color 250ms;
+  color: #008a00;
 }
 
-.large-button-green:hover {
-  cursor: pointer;
-  background-color: #00ff00;
-  border: 2px solid #00ff00;
+.large-button-green:hover{
+  color:#ffffff;
+  background-color:#008a00;
+  border: 2px solid #008a00;
 }
 
 .large-button-red {
+  font-family: sans-serif;
+  text-decoration:none;
+  font-size: 16px;
+  font-weight:bold;
+  padding: 10px 10px;
+  border: 2px solid #db0003;
   cursor: pointer;
-  border: 2px solid #ff0000;
-  background-color: transparent;
+  border-radius:10px;
+  background-color: white;
+  transition: background-color 250ms, color 250ms;
+  color: #db0003;
 }
 
 .large-button-red:hover {
-  cursor: pointer;
-  background-color: #ff0000;
-  border: 2px solid #ff0000;
-}
-
-.large-button-inner {
-  padding: 20px 10px;
-  display: block;
-  color: black;
-  text-align: center;
-  font-family: sans-serif;
-  text-decoration: none;
-}
-
-.large-button-inner:hover {
-  padding: 20px 10px;
-  text-align: center;
-  display: block;
-  color: white;
-  font-family: sans-serif;
-  text-decoration: none;
+  color: #ffffff;
+  background-color: #db0003;
+  border: 2px solid #db0003;
 }
 
 .left {
@@ -63,8 +61,6 @@
 }
 
 .center-button {
-  width: 200px;
-  margin: 0 auto;
   text-align: center;
 }
 
@@ -93,11 +89,6 @@
 
 .form-label{
   font-family: sans-serif;
-}
-
-.listing-title{
-  font-family: sans-serif;
-  font-size: 16px;
 }
 
 .listing-property-title{
@@ -139,4 +130,94 @@
   top: 50%;
   transform: translateY(-50%);
   background-color: rgba(255,255,255,1.0);
+}
+
+.listings-container{
+  text-align: left;
+  width:70%;
+  min-width: 200px;
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
+.listing-link{
+  text-decoration: none;
+}
+
+.listing-container{
+  padding: 5px;
+  margin: 7px;
+  background-color: #dcdcdc;
+  border-radius:5px;
+  border: 2px solid white;
+  transition: border 250ms;
+  overflow:auto;
+}
+
+.listing-container:hover{
+  border: 2px solid #9b9b9b;
+}
+
+.listing-title{
+  font-family: sans-serif;
+  font-size: 1.25em;
+  font-weight: bold;
+  margin: 5px 3px;
+  text-decoration:none;
+  color: #5e5e5e;
+  transition: color 250ms;
+}
+
+.listing-title:hover{
+  color:black;
+}
+.listing-container:hover .listing-title{
+  color: black;
+}
+
+.listing-authors{
+  margin:5px 3px;
+  font-family: sans-serif;
+  font-size: 0.95em;
+  color: #2e2e2e;
+}
+
+.listing-isbn{
+  font-family: sans-serif;
+  margin:3px 3px;
+  font-size:0.9em;
+  color: black;
+}
+
+.listing-cover{
+  max-width:100%;
+}
+
+.cover-container{
+  margin: 3px 5px 3px 2px;
+  width:25%;
+  max-width:200px;
+  min-width:90px;
+  height: auto;
+  float:left;
+}
+
+.property-container{
+  float:left;
+  width:70%;
+}
+
+.listing-price{
+  font-family: sans-serif;
+  font-size:1em;
+  font-weight: bold;
+  margin: 15px 5px 5px 2px;
+  color: black;
+}
+
+.listing-seller{
+  font-family: sans-serif;
+  font-size:0.9em;
+  margin: 5px 3px;
+  color: black;
 }
