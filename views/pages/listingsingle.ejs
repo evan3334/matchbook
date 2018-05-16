@@ -22,9 +22,7 @@
 </script>
 
 <div class="top-button-container">
-    <div class="large-button-green left text-center">
-        <a class="large-button-inner" href="/listings/">&lt; Back to listings</a>
-    </div>
+    <a class="large-button-green left text-center" href="/listings/">&lt; Back to listings</a>
 </div>
 <% if(listing) { %>
     <div class="page-title text-center">
@@ -47,12 +45,10 @@
         </ul>
     </div>
     <% if(owner){ %>
-        <div class="large-button-green center-button text-center">
-            <a class="large-button-inner" href="/listings/<%= listing.uuid %>/edit">Edit this listing &gt;</a>
-        </div>
-        <div class="large-button-red center-button text-center" onclick="openModal()">
-            <span class="large-button-inner">Delete this listing</span>
-        </div>
+    <div class="text-center">
+        <a class="large-button-green center-button" href="/listings/<%= listing.uuid %>/edit">Edit this listing</a>
+        <span class="large-button-red center-button" onclick="openModal()">Delete this listing</span>
+    </div>
         <div class="modal-overlay" style="visibility: hidden">
 
             <div class="modal-dialog-box text-center">
