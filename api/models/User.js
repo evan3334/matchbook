@@ -1,5 +1,3 @@
-const Promise = require('promise');
-
 module.exports = {
   attributes: {
     uuid: {
