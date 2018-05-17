@@ -221,3 +221,15 @@
   margin: 5px 3px;
   color: black;
 }
+
+.listing-input-box {
+  padding: 7px;
+  font-size: 15px;
+  margin: 5px;
+  border: 2px solid lightblue;
+  border-radius: 2px
+}
+
+.listing-input-box:focus{
+  box-shadow: 1px 1px 30px #909090;
+}
