@@ -29,6 +29,18 @@ module.exports.bootstrap = async function(done) {
 
   // Don't forget to trigger `done()` when this bootstrap function's logic is finished.
   // (otherwise your server will never lift, since it's waiting on the bootstrap)
+  sails.log.debug("Mailgun domain: "+sails.config.custom.mailgun.domain);
+  sails.log.debug("Mailgun API Key: "+sails.config.custom.mailgun.apiKey);
+
+
+  sails.log.debug("");
+  sails.log.debug("Setting up expiry TTL for tokens...");
+  //set up automatic expiry for tokens
+  let db = Token.getDatastore().manager;
+  let tokenCollection = await db.collection(Token.tableName);
+  await tokenCollection.createIndex({"expires":1},{expireAfterSeconds:0});
+  sails.log.debug("Done setting up TTL");
+
   return done();
 
 };

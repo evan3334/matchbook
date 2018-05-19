@@ -20,4 +20,14 @@ module.exports.custom = {
   // stripeSecret: 'sk_test_Zzd814nldl91104qor5911gjald',
   // …
 
+  //mailgun settings
+  mailgun: {
+    //these are set with environment variables so I don't check them into version control
+    //domain: '',
+    //apiKey: ''
+  },
+
+  //the address of the website, used when making links for emails
+  //don't include "http://" but do include any port numbers if necessary
+  siteAddress: 'matchbook.evan.pw'
 };

@@ -358,15 +358,29 @@ module.exports = {
    *  Set up a server also listening on port 80 that redirects to SSL       *
    *   automatically. This way we'll never get anyone on the site not using *
    *   SSL.                                                                 *
+   *                                                                        *
+   *  Also, set up automatic expiry for the collection holding the tokens,  *
+   *   utilizing MongoDB's built in TTL indexing feature.                   *
+   *                                                                        *
    *   (This is overriding the bootstrap config)                            *
    **************************************************************************/
   bootstrap: async function bootstrap(done){
+    sails.log.debug("Setting up HTTP server on port 80 to redirect users to HTTPS...");
     var express = require("express"),
       app = express();
 
     app.get('*', function(req,res) {
       res.redirect('https://' + req.headers.host + req.url)
     }).listen(80);
+    sails.log.debug("Done setting up HTTP Server");
+
+    sails.log.debug("");
+    sails.log.debug("Setting up expiry TTL for tokens...");
+    //set up automatic expiry for tokens
+    let db = Token.getDatastore().manager;
+    let tokenCollection = await db.collection(Token.tableName);
+    await tokenCollection.createIndex({"expires":1},{expireAfterSeconds:0});
+    sails.log.debug("Done setting up TTL");
 
     return done();
   },
@@ -380,8 +394,17 @@ module.exports = {
    *                                                                         *
    ***************************************************************************/
   custom: {
-    baseUrl: 'https://example.com',
-    internalEmailAddress: 'support@example.com',
+
+    //mailgun settings
+    mailgun: {
+      //these are set with environment variables so I don't check them into version control
+      //domain: '',
+      //apiKey: ''
+    },
+
+    //the address of the website, used when making links for emails
+    //don't include "http://" but do include any port numbers if necessary
+    siteAddress: 'matchbook.evan.pw'
 
     // mailgunDomain: 'mg.example.com',
     // mailgunSecret: 'key-prod_fake_bd32301385130a0bafe030c',
