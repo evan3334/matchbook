@@ -20,6 +20,10 @@ module.exports = {
       type: 'string',
       required: true
     },
+    verified:{
+      type: 'boolean',
+      defaultsTo: false
+    },
     admin: {
       type: 'boolean',
       defaultsTo: false
