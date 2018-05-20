@@ -56,7 +56,6 @@ module.exports = {
               '\n'+  //let's hold off on this part until we have some safe measure for dealing with people signing up others' email addresses
               'Didn\'t register an account on Matchbook? You can safely ignore this email.'*/
           };
-          sails.log.debug(message);
 
           try {
             await mailgunClient.messages().send(message);

@@ -53,13 +53,13 @@ module.exports = {
           let token = await Token.findOne({uuid: inputs.token}).populate('user');
           if(token && token.type === 'verify-email' && token.user.uuid === user.uuid){
             //all token validations have succeeded. Let's verify the account.
-            let updatedUser = await User.update({uuid:user.uuid})
+            let updatedUsers = await User.update({uuid:user.uuid})
               .set({verified: true})
               .fetch();
-            if(!updatedUser){
+            if(!updatedUsers){
               return this.res.serverError(new Error('No user account exists for the specified user ID!'));
             }
-            this.req.session.me = updatedUser;
+            this.req.session.me = updatedUsers[0];
             return redir(inputs,exits);
           }
         }
@@ -68,7 +68,6 @@ module.exports = {
         //let's make sure the token didn't expire, if a token exists we will send it but if not we will regenerate it
         let token = await Token.findOne({user: user.id, type: 'verify-email'});
         if(!token){
-          sails.log.debug(user.uuid);
           token = await sails.helpers.genVerificationToken(user.uuid);
         }
 
