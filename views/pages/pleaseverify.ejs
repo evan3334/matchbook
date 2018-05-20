@@ -1,0 +1,28 @@
+<div class="page-title" style="text-align: center;">
+    <h1>Verify Your Email Address</h1>
+</div>
+<div class="text-center">
+    <p class="page-subtitle">
+        Please verify your email address by opening the verification email that was sent to <%= email %> and clicking the link.
+    </p>
+
+    <p class="page-subtitle">
+        Once you receive the email, you can close this tab. A new one will be opened when you click the verification link.
+    </p>
+
+    <p class="page-subtitle">
+        Didn't get the email? Please click the button below and you will be sent another one.
+    </p>
+    <p class="page-subtitle">
+        If that doesn't work, try checking your spam/junk folders in case the email ended up there by mistake.
+    </p>
+    <br>
+    <a class="large-button-green" href="/account/verify?resendemail=true">
+        Resend email
+    </a>
+    <%if (typeof sent !== 'undefined' && sent){%>
+    <p class="page-subtitle" style="color: #00ff00">
+        A new email has been sent to <%= email %>.
+    </p>
+    <%}%>
+</div>

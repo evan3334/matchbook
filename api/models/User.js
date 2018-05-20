@@ -1,5 +1,3 @@
-const Promise = require('promise');
-
 module.exports = {
   attributes: {
     uuid: {
@@ -21,6 +19,10 @@ module.exports = {
     password:{
       type: 'string',
       required: true
+    },
+    verified:{
+      type: 'boolean',
+      defaultsTo: false
     },
     admin: {
       type: 'boolean',

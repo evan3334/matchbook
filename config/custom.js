@@ -20,4 +20,13 @@ module.exports.custom = {
   // stripeSecret: 'sk_test_Zzd814nldl91104qor5911gjald',
   // …
 
+  //mailgun settings
+  mailgun: {
+    //these are set with environment variables so I don't check them into version control
+    //domain: '',
+    //apiKey: ''
+  },
+
+  //the address of the website (including scheme for http/https), used when making links for emails
+  siteAddress: 'http://localhost:1337'
 };

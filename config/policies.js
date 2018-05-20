@@ -24,5 +24,6 @@ module.exports.policies = {
   'pages/editpage':'isLoggedIn',
   'listings/edit':'isLoggedIn',
   'pages/deletepage':'isLoggedIn',
-  'listings/delete':'isLoggedIn'
+  'listings/delete':'isLoggedIn',
+  //'pages/verifypage':'isLoggedIn'
 };

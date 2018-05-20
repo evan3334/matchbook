@@ -54,6 +54,10 @@ module.exports = {
       let redirectPage = '/';
       if(inputs.redirect){
         redirectPage = decodeURIComponent(inputs.redirect);
+      }else{
+        if(!user.verified){
+          return this.res.needsVerification(false);
+        }
       }
       return exits.success(redirectPage);
     }

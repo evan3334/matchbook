@@ -1,4 +1,4 @@
-module.exports = function needsLogin(redirect) {
+module.exports = function needsVerification(redirect) {
 
   let req = this.req;
   let res = this.res;
@@ -10,5 +10,5 @@ module.exports = function needsLogin(redirect) {
   } else {
     attemptedPage = req.originalUrl;
   }
-  res.redirect('/login/'+((attemptedPage!=='')?'?redirect=' + encodeURIComponent(attemptedPage):''));
+  res.redirect('/account/verify/'+((attemptedPage!=='')?'?redirect=' + encodeURIComponent(attemptedPage):''));
 };
