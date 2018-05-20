@@ -402,9 +402,8 @@ module.exports = {
       //apiKey: ''
     },
 
-    //the address of the website, used when making links for emails
-    //don't include "http://" but do include any port numbers if necessary
-    siteAddress: 'matchbook.evan.pw'
+    //the address of the website (including scheme for http/https), used when making links for emails
+    siteAddress: 'https://matchbook.evan.pw'
 
     // mailgunDomain: 'mg.example.com',
     // mailgunSecret: 'key-prod_fake_bd32301385130a0bafe030c',

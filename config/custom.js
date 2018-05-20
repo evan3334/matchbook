@@ -27,7 +27,6 @@ module.exports.custom = {
     //apiKey: ''
   },
 
-  //the address of the website, used when making links for emails
-  //don't include "http://" but do include any port numbers if necessary
-  siteAddress: 'matchbook.evan.pw'
+  //the address of the website (including scheme for http/https), used when making links for emails
+  siteAddress: 'http://localhost:1337'
 };

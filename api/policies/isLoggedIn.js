@@ -6,7 +6,12 @@ module.exports = async function (req, res, proceed) {
   // > For more about where `req.me` comes from, check out this app's
   // > custom hook (`api/hooks/custom/index.js`).
   if (req.session.me) {
-    return proceed();
+    if(req.session.me.verified) {
+      return proceed();
+    }
+    else{
+      return res.needsVerification();
+    }
   }
   else{
     return res.needsLogin();

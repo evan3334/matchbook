@@ -8,7 +8,7 @@ module.exports = function needsLogin(redirect) {
   } else if (typeof redirect === 'boolean' && !redirect) {
     attemptedPage = '';
   } else {
-    attemptedPage = req.path;
+    attemptedPage = req.originalUrl;
   }
   res.redirect('/login/'+((attemptedPage!=='')?'?redirect=' + encodeURIComponent(attemptedPage):''));
 };

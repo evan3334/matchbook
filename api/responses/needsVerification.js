@@ -8,7 +8,7 @@ module.exports = function needsVerification(redirect) {
   } else if (typeof redirect === 'boolean' && !redirect) {
     attemptedPage = '';
   } else {
-    attemptedPage = req.path;
+    attemptedPage = req.originalUrl;
   }
   res.redirect('/account/verify/'+((attemptedPage!=='')?'?redirect=' + encodeURIComponent(attemptedPage):''));
 };
