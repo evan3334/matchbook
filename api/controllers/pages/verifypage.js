@@ -60,7 +60,6 @@ module.exports = {
               return this.res.serverError(new Error('No user account exists for the specified user ID!'));
             }
             this.req.session.me = updatedUser;
-            sails.log.debug(JSON.stringify(this.req.session.me,null,2));
             return redir(inputs,exits);
           }
         }

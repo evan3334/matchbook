@@ -58,7 +58,12 @@ module.exports = {
         }).fetch();
 
         this.req.session.me = user;
-        return exits.success('/');
+
+        //now we need to generate a verification token for this new user and send them a verification email.
+        await sails.helpers.genVerificationToken(user.uuid);
+        await sails.helpers.sendVerificationEmail(user.uuid);
+
+        return exits.success('/account/verify');
       }
     }
     catch (e) {
