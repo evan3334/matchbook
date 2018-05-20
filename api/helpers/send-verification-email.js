@@ -49,12 +49,10 @@ module.exports = {
             from: 'Matchbook <no-reply@' + sails.config.custom.mailgun.domain + '>',
             to: user.email,
             subject: 'Verify your email address',
-            text: 'Hello, ' + user.name + '. Please finish setting up your account on Matchbook by verifying your email address.\n' +
-            'Simply click the link below to complete the account-creation process by verifying that you own this email address.\n' +
-            '\n' +
-            link /*+
-              '\n'+  //let's hold off on this part until we have some safe measure for dealing with people signing up others' email addresses
-              'Didn\'t register an account on Matchbook? You can safely ignore this email.'*/
+            html: '<p>Hello, ' + user.name + '.</p>'+
+            '<p> Please finish setting up your account on Matchbook by verifying your email address.</p>' +
+            '<p>Simply click the link below to complete the account-creation process by verifying that you own this email address.</p>' +
+            '<a href='+link+'>Verify Email</a>'
           };
 
           try {
