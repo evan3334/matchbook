@@ -36,10 +36,15 @@ module.exports = {
       }
       else{
         var owner = false;
+        var admin = false;
         if(this.req.session.me && this.req.session.me.uuid === listing.creator.uuid){
           owner = true;
         }
-        return exits.success({listing:listing, owner: owner});
+        if(this.req.session.me && this.req.session.me.admin){
+          admin = true;
+        }
+
+        return exits.success({listing:listing, owner: owner, admin: admin});
       }
     }
     catch(e){

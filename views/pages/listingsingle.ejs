@@ -44,7 +44,14 @@
             </li>
         </ul>
     </div>
-    <% if(owner){ %>
+
+    <% if(admin && !owner) { %>
+    <div class="text-center">
+        <p class="page-subtitle">Administrative Features:</p>
+    </div>
+    <% } %>
+
+    <% if(owner || admin){ %>
     <div class="text-center">
         <a class="large-button-green center-button" href="/listings/<%= listing.uuid %>/edit">Edit this listing</a>
         <span class="large-button-red center-button" onclick="openModal()">Delete this listing</span>

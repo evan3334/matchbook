@@ -30,7 +30,7 @@ module.exports = {
     try {
       var listing = await Listing.findOne({uuid: inputs.uuid}).populate('creator');
       if(listing){
-        if(listing.creator.uuid === user.uuid){
+        if(listing.creator.uuid === user.uuid || user.admin){
           await Listing.destroy({uuid: inputs.uuid});
           return exits.success();
         }

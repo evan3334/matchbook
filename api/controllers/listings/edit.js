@@ -48,7 +48,7 @@ module.exports = {
     try {
       var listing = await Listing.findOne({uuid: inputs.uuid}).populate('creator');
       if(listing){
-        if(listing.creator.uuid === user.uuid){
+        if(listing.creator.uuid === user.uuid || user.admin){
           var newlisting = await Listing.update({uuid:inputs.uuid},{
             title:inputs.title,
             isbn: inputs.isbn,
