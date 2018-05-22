@@ -36,6 +36,26 @@ body {
   border: 2px solid #008a00;
 }
 
+.small-button-green {
+  font-family: sans-serif;
+  text-decoration:none;
+  font-size: 14px;
+  font-weight:bold;
+  padding: 6px 8px;
+  border: 1px solid #008a00;
+  cursor: pointer;
+  border-radius:8px;
+  background-color: white;
+  transition: background-color 250ms, color 250ms;
+  color: #008a00;
+}
+
+.small-button-green:hover{
+  color:#ffffff;
+  background-color:#008a00;
+  border: 1px solid #008a00;
+}
+
 .large-button-red {
   font-family: sans-serif;
   text-decoration:none;
@@ -93,6 +113,8 @@ body {
 
 .form-label{
   font-family: sans-serif;
+  margin-top:10px;
+  margin-bottom:3px;
 }
 
 .listing-property-title{
@@ -235,5 +257,18 @@ body {
 }
 
 .listing-input-box:focus{
+  box-shadow: 1px 1px 30px #909090;
+}
+
+.login-input {
+  padding: 7px;
+  font-size: 1em;
+  width: 16em;
+  margin: 5px;
+  border: 2px solid lightblue;
+  border-radius: 2px;
+}
+
+.login-input:focus {
   box-shadow: 1px 1px 30px #909090;
 }

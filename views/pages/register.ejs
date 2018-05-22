@@ -10,17 +10,17 @@
 <div class="login-form-content text-center">
     <form action="/register/" method="post">
         <p class="form-label">Name</p>
-        <input type="text" name="name" required title="Name">
+        <input class="login-input" type="text" name="name" required title="Name">
         <p class="form-label">E-mail Address</p>
-        <input type="email" name="email" required title="E-mail Address">
+        <input class="login-input" type="email" name="email" required title="E-mail Address">
         <p class="form-label">Password</p>
-        <input type="password" name="password" required title="Password">
+        <input class="login-input" type="password" name="password" required title="Password">
         <br>
         <input type="hidden" name="_csrf" value="<%= _csrf %>" />
-        <input type="submit" value="Register">
+        <input class="large-button-green" type="submit" value="Register">
     </form>
 </div>
 <br>
 <div class="text-center">
-    <a href="/login">I already have an account &gt;</a>
+    <a class="small-button-green" href="/login">I already have an account &gt;</a>
 </div>

@@ -14,15 +14,15 @@
     <form action="/login" method="post">
     <%}%>
         <p class="form-label">E-mail Address</p>
-        <input type="email" name="email" required title="E-mail Address">
+        <input class="login-input" type="email" name="email" required title="E-mail Address">
         <p class="form-label">Password</p>
-        <input type="password" name="password" required title="Password">
+        <input class="login-input" type="password" name="password" required title="Password">
         <br>
         <input type="hidden" name="_csrf" value="<%= _csrf %>" />
-        <input type="submit" value="Login">
+        <input class="large-button-green" type="submit" value="Login"/>
     </form>
 </div>
 <br>
 <div class="text-center">
-    <a href="/register">Sign up for a new account &gt;</a>
+    <a class="small-button-green" href="/register">Sign up for a new account &gt;</a>
 </div>
