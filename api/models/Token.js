@@ -22,8 +22,11 @@ module.exports = {
       ]
     },
     expires: {
-      type: 'number',
-      description: 'The date, in milliseconds since 1/1/1970, when this token should become invalid',
+      type: 'ref',
+      description: 'The date when this token should become invalid',
+      custom: function(value){
+        return (value instanceof Date);
+      },
       required: false
     }
 
