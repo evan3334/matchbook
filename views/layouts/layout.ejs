@@ -30,11 +30,19 @@
 
     <!--STYLES-->
     <link rel="stylesheet" href="/styles/matchbook.css">
+    <link rel="stylesheet" href="/styles/menubar.css">
     <!--STYLES END-->
   </head>
 
   <body>
     <!-- TODO add a menu bar of some kind here -->
+    <div class="menu-bar">
+      <a class="menu-bar-button" href="/"><b>MATCHBOOK</b></a>
+      <a class="menu-bar-button" href="/listings">Listings</a>
+      <a class="menu-bar-button menu-bar-button-right" href="/register">Register</a>
+      <a class="menu-bar-button menu-bar-button-right" href="/login">Login</a>
+
+    </div>
     <% if (req.session.me){%>
       You are logged in as <%= req.session.me.name %> (<a href="/logout">Log Out</a>)
       <% if(!req.session.me.verified){ %>

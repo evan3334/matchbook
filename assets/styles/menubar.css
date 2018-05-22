@@ -1,0 +1,27 @@
+.menu-bar{
+  background-color: #00c500;
+}
+
+.menu-bar-button{
+  display: inline-block;
+  text-decoration: none;
+  margin: 0;
+  padding: 0.7em 10px;
+  background-color: #00c500;
+  color: #ffffff;
+  font-family: sans-serif;
+  font-size: 1.1em;
+  transition: background-color 150ms;
+}
+
+.menu-bar-button:hover {
+  background-color: #00b400;
+}
+
+.menu-bar-button-right{
+  float:right;
+}
+
+body {
+  margin: 0;
+}
