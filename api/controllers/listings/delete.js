@@ -32,7 +32,7 @@ module.exports = {
       if(listing){
         if(listing.creator.uuid === user.uuid || user.admin){
           await Listing.destroy({uuid: inputs.uuid});
-          return exits.success();
+          return exits.success({backbtn:'/listings/'});
         }
         else{
           return exits.redirect('/listings/'+inputs.uuid);
