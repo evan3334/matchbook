@@ -14,11 +14,21 @@
   transition: background-color 150ms;
 }
 
+.menu-bar-text{
+  display: inline-block;
+  margin: 0;
+  padding: 0.7em 10px;
+  background-color: #00c500;
+  color: #ffffff;
+  font-family: sans-serif;
+  font-size: 1.1em;
+}
+
 .menu-bar-button:hover {
   background-color: #00b400;
 }
 
-.menu-bar-button-right{
+.menu-bar-right{
   float:right;
 }
 
