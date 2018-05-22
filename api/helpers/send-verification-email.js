@@ -37,7 +37,7 @@ module.exports = {
         //great, we have found a token.
         //one last check in case it has expired but hasn't been cleared out by the TTL settings in Mongo yet.
         let now = new Date().getTime();
-        if(token.expires > now) {
+        if(token.expires.getTime() > now) {
           //perfect. the token is completely valid. Now, let's send it off to the user.
 
           let mailgunClient = new mailgun({

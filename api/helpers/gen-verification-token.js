@@ -21,7 +21,6 @@ module.exports = {
 
   fn: async function (inputs, exits) {
     let newToken = uuid.v4();
-    sails.log.debug(inputs.userUUID);
     let user = await User.findOne({uuid: inputs.userUUID});
     let expiryDate = new Date();
     expiryDate.setHours(expiryDate.getHours() + 2); //token will expire in 2 hours from now
@@ -33,7 +32,7 @@ module.exports = {
         uuid: newToken,
         user: user.id,
         type: 'verify-email',
-        expires: expiryDate.getTime()
+        expires: expiryDate
       }).fetch();
       return exits.success(token);
     }
