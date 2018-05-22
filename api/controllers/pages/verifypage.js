@@ -59,6 +59,8 @@ module.exports = {
             if(!updatedUsers){
               return this.res.serverError(new Error('No user account exists for the specified user ID!'));
             }
+            //delete the token because we are now done with it
+            await Token.destroy({user:user.id});
             this.req.session.me = updatedUsers[0];
             return redir(inputs,exits);
           }
