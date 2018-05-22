@@ -30,7 +30,7 @@ module.exports = {
         return this.res.forbidden();
       }
       else{
-        return exits.success({listing: listing});
+        return exits.success({listing: listing, backbtn:'/listings/'+listing.uuid});
       }
     }
   }

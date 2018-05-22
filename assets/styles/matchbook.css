@@ -56,6 +56,26 @@ body {
   border: 1px solid #008a00;
 }
 
+.small-button-red {
+  font-family: sans-serif;
+  text-decoration:none;
+  font-size: 14px;
+  font-weight:bold;
+  padding: 6px 8px;
+  border: 1px solid #db0003;
+  cursor: pointer;
+  border-radius:8px;
+  background-color: white;
+  transition: background-color 250ms, color 250ms;
+  color: #db0003;
+}
+
+.small-button-red:hover{
+  color:#ffffff;
+  background-color:#db0003;
+  border: 1px solid #db0003;
+}
+
 .large-button-red {
   font-family: sans-serif;
   text-decoration:none;
@@ -104,11 +124,6 @@ body {
 
 .validation-success {
   color: #008000;
-}
-
-.top-button-container {
-  width: 100%;
-  display: inline-block;
 }
 
 .form-label{

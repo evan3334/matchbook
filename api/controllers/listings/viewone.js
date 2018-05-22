@@ -44,7 +44,7 @@ module.exports = {
           admin = true;
         }
 
-        return exits.success({listing:listing, owner: owner, admin: admin});
+        return exits.success({listing:listing, owner: owner, admin: admin, backbtn: '/listings/'});
       }
     }
     catch(e){

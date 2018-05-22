@@ -13,14 +13,20 @@
   </head>
 
   <body>
-    <!-- TODO add a menu bar of some kind here -->
     <div class="menu-bar">
+      <% if(typeof backbtn === 'string'){%>
+      <a class="menu-bar-backarrow" href="<%=backbtn%>">
+        <img class="backarrow-img" src="/images/backarrow.svg"/>
+      </a>
+      <% }%>
       <a class="menu-bar-button" href="/"><b>MATCHBOOK</b></a>
       <a class="menu-bar-button" href="/listings">Listings</a>
     <% if (req.session.me){%>
       <a class="menu-bar-button menu-bar-right" href="/logout">Logout</a>
       <% if(!req.session.me.verified){ %>
       <a class="menu-bar-button menu-bar-right" href="/account/verify"><i>Verify Account</i></a>
+      <% } else { %>
+      <a class="menu-bar-button" href="/listings/create">Post Listing</a>
       <% } %>
       <span class="menu-bar-text menu-bar-right"><%= req.session.me.name %></span>
     <% } else {%>

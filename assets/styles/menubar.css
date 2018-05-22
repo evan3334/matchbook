@@ -32,6 +32,26 @@
   float:right;
 }
 
+.menu-bar-backarrow{
+  display: inline-block;
+  vertical-align: middle;
+  text-decoration: none;
+  margin: 0;
+  padding: 0.25em 10px;
+  background-color: #00c500;
+  color: #ffffff;
+  transition: background-color 150ms;
+}
+
+.menu-bar-backarrow:hover {
+  background-color: #00b400;
+}
+
+.backarrow-img{
+  width:2em;
+  height:2em;
+}
+
 body {
   margin: 0;
 }

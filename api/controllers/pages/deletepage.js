@@ -36,7 +36,7 @@ module.exports = {
       }
       else{
         //the user can delete this listing, so show them the page with the dialog.
-        return exits.success({listing: listing, showDelete: true, owner:true});
+        return exits.success({listing: listing, showDelete: true, owner:true, backbtn:'/listings/'});
       }
     }
   }
