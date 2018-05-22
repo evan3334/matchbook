@@ -223,6 +223,13 @@ body {
   color: #2e2e2e;
 }
 
+.listing-publisher{
+  font-family: sans-serif;
+  margin:2px 2px;
+  font-size: 0.85em;
+  color: #2e2e2e;
+}
+
 .listing-isbn{
   font-family: sans-serif;
   margin:3px 3px;

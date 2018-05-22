@@ -16,14 +16,17 @@
             <a class="listing-link" href="/listings/<%= current.uuid %>">
             <div class="listing-container">
                 <div class="cover-container">
-                    <img class="listing-cover" src="http://www.lucasspanish.org/wp-content/uploads/2015/03/Red-Book.jpg"/>
+                    <img class="listing-cover" src="<%=current.cover%>"/>
                 </div>
                 <div class="property-container">
                     <p class="listing-title" ><%= current.title %></p>
-                    <p class="listing-authors">Listing Authors here</p>
+                    <p class="listing-authors"><%= current.authors.join(', ')%></p>
                     <p class="listing-isbn"><b>ISBN: </b><%= current.isbn %></p>
+                    <% if (current.publisher){%>
+                    <p class="listing-publisher"><b>Publisher: </b><%= current.publisher %></p>
+                    <% } %>
                     <p class="listing-price">$<%= formatprice(current.price) %></p>
-                    <p class="listing-seller"><b>Sold By: </b><%= current.creator.name %></p>
+                    <p class="listing-seller"><b>Seller: </b><%= current.creator.name %></p>
                 </div>
             </div>
             </a>

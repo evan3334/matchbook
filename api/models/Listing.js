@@ -28,6 +28,34 @@ module.exports = {
     description: {
       type: 'string',
       required: false
+    },
+    subtitle: {
+      type: 'string',
+      required: false
+    },
+    authors:{
+      type: 'json',
+      columnType: 'array',
+      required: false,
+      defaultsTo: ['Anonymous', 'Anonymous 2'],
+    },
+    publisher:{
+      type: 'string',
+      required: false
+    },
+    publicationDate:{
+      type: 'ref',
+      required: false,
+      defaultsTo: new Date(0),
+      custom: function(value){
+        return value instanceof Date;
+      }
+    },
+    cover: {
+      type: 'string',
+      isURL: true,
+      required: false,
+      defaultsTo: sails.config.custom.siteAddress+'/images/defaultcover.png'
     }
   }
 };
