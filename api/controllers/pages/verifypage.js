@@ -67,7 +67,7 @@ module.exports = {
       if(inputs.resendemail){
         //let's make sure the token didn't expire, if a token exists we will send it but if not we will regenerate it
         let token = await Token.findOne({user: user.id, type: 'verify-email'});
-        if(!token){
+        if(!token || (token.expires < new Date().getTime())){
           token = await sails.helpers.genVerificationToken(user.uuid);
         }
 
