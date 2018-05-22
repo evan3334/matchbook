@@ -1,7 +1,3 @@
-body {
-  margin: 0;
-}
-
 .page-title {
   font-family: sans-serif;
   text-align: center;
@@ -120,16 +116,18 @@ body {
 
 .validation-failed {
   color: #ff0000;
+  opacity: 1;
 }
 
 .validation-success {
   color: #008000;
+  opacity: 0;
 }
 
 .form-label{
   font-family: sans-serif;
-  margin-top:10px;
-  margin-bottom:3px;
+  margin-top:15px;
+  margin-bottom:1px;
 }
 
 .listing-property-title{
@@ -237,6 +235,12 @@ body {
   color: black;
 }
 
+.isbn-input{
+  width: 9em;
+  font-family: monospace;
+  text-align: center;
+}
+
 .listing-cover{
   max-width:100%;
 }
@@ -293,4 +297,22 @@ body {
 
 .login-input:focus {
   box-shadow: 1px 1px 30px #909090;
+}
+
+.listing-title-input {
+  width: 20em;
+}
+
+.listing-author-input {
+  width: 20em;
+}
+
+.listing-publisher-input {
+  width: 20em;
+}
+
+.listing-price-input {
+  font-size: 18px;
+  font-family: monospace;
+  width: 8em;
 }

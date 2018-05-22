@@ -1,6 +1,7 @@
 <script>
     function validateForm(){
       let element = document.getElementsByClassName('isbn-input')[0];
+      doValidation(element,element.value);
       return !!validateISBN(element.value);
     }
 
@@ -45,6 +46,25 @@
       element.innerText = "Must be a valid ISBN";
       hideSubmit();
     }
+
+    window.addEventListener('load', function(){
+      //onload handler would go here... IF I HAD ONE
+      let priceInput = document.getElementsByClassName('listing-price-input')[0];
+      priceInput.addEventListener('blur', function(){
+        if(!priceInput.value) {
+          priceInput.value = 0;
+        }
+        priceInput.value = Number(priceInput.value).toFixed(2).toString();
+      })
+
+      let isbnInput = document.getElementsByClassName('isbn-input')[0];
+      isbnInput.addEventListener('blur', function(){
+        doValidation(isbnInput,isbnInput.value);
+      });
+      isbnInput.addEventListener('input', function(){
+        doValidation(isbnInput,isbnInput.value);
+      })
+    });
 </script>
 
 <div class="page-title" style="text-align: center;">
@@ -52,14 +72,21 @@
 </div>
 <div class="form-content text-center">
     <form onsubmit="return validateForm()" action="/listings/create"  method="post">
-        Book ISBN:<br>
-        <input oninput="doValidation(this, this.value)" class="isbn-input listing-input-box" type="text" name="isbn" required title="Book ISBN:">
+        <p class="form-label">Book ISBN:</p>
+        <input class="isbn-input listing-input-box" type="text" name="isbn" required title="Book ISBN:">
         <p class="validation-result">Must be a valid ISBN</p>
-        Book Title:<br>
-        <input class="listing-input-box" type="text" name="title" required title="Book Title:"><br>
-        Book Price (USD):<br>
-        <input class="listing-input-box" type="number" name="price" min="0" step="0.01" required title="Book Price (USD):"><br>
+        <p class="form-label">Book Title:</p>
+        <input class="listing-input-box listing-title-input" type="text" name="title" required title="Book Title:"><br>
+        <p class="form-label">Authors (Separate multiple authors with commas):</p>
+        <input class="listing-input-box listing-author-input" type="text" name="authors" required title="Authors"><br>
+        <p class="form-label">Publisher (Optional):</p>
+        <input class="listing-input-box listing-publisher-input" type="text" name="publisher" title="Publisher:"><br>
+        <p class="form-label">Publication Date (Optional):</p>
+        <input class="listing-input-box listing-publication-date-input" type="date" max="<%= new Date().toJSON().substr(0,10)%>" name="publicationDate" title="Publication Date:"><br>
+        <p class="form-label">Book Price (USD):</p>
+        <input class="listing-input-box listing-price-input" type="number" name="price" min="0" step="0.01" required title="Book Price (USD):"><br>
         <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+        <br>
         <a href="/listings/" class="small-button-red">&lt; Cancel</a>
         <input class="submit large-button-green" hidden type="submit" value="Create">
 
