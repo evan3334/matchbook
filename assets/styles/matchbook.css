@@ -290,6 +290,7 @@
   text-align: right;
   vertical-align: middle;
   width: 50%;
+  padding-right:5px;
 }
 
 .login-input {
@@ -300,6 +301,7 @@
   margin: 5px;
   border: 2px solid lightblue;
   border-radius: 2px;
+  float:left;
 }
 
 .login-input:focus {

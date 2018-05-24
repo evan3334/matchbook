@@ -13,13 +13,21 @@
     <% } else {%>
     <form action="/login" method="post" style="display: table; width: 100%;">
     <%}%>
+        <div class="form-input-container">
         <p class="form-label">E-mail Address</p>
         <input class="login-input" type="email" name="email" required title="E-mail Address">
+        </div>
+        <div class="form-input-container">
         <p class="form-label">Password</p>
         <input class="login-input" type="password" name="password" required title="Password">
+        </div>
         <br>
         <input type="hidden" name="_csrf" value="<%= _csrf %>" />
-        <input class="large-button-green" type="submit" value="Login"/>
+        <div class="form-input-container">
+        <p style="display: table-cell;">
+        <input class="large-button-green" style="float:right;" type="submit" value="Login"/>
+        </p>
+        </div>
     </form>
 </div>
 <br>
