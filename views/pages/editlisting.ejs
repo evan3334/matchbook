@@ -1,99 +1,128 @@
 <script>
-    function validateForm(){
-      let element = document.getElementsByClassName('isbn-input')[0];
-      doValidation(element, element.value);
-      return !!validateISBN(element.value);
+  function validateForm() {
+    let element = document.getElementsByClassName('isbn-input')[0];
+    doValidation(element, element.value);
+    return !!validateISBN(element.value);
+  }
+
+  function doValidation(element, value) {
+    let resultElement = document.getElementsByClassName('validation-result')[0];
+    if (validateISBN(value)) {
+      success(resultElement);
     }
-
-    function doValidation(element, value){
-      let resultElement = document.getElementsByClassName('validation-result')[0];
-      if(validateISBN(value)){
-        success(resultElement);
-      }
-      else{
-        failure(resultElement);
-      }
+    else {
+      failure(resultElement);
     }
+  }
 
-    function validateISBN(isbn){
-      return /^[0-9]{10}$/.test(isbn) || /^[0-9]{13}$/.test(isbn);
+  function validateISBN(isbn) {
+    return /^[0-9]{10}$/.test(isbn) || /^[0-9]{13}$/.test(isbn);
+  }
+
+  function hideSubmit() {
+    let submitElements = document.getElementsByClassName('submit');
+    for (let i = 0; i < submitElements.length; i++) {
+      submitElements[i].hidden = true;
     }
+  }
 
-    function hideSubmit(){
-      let submitElements = document.getElementsByClassName('submit');
-      for(let i =0; i< submitElements.length; i++){
-        submitElements[i].hidden = true;
-      }
+  function showSubmit() {
+    let submitElements = document.getElementsByClassName('submit');
+    for (let i = 0; i < submitElements.length; i++) {
+      submitElements[i].hidden = false;
     }
+  }
 
-    function showSubmit(){
-      let submitElements = document.getElementsByClassName('submit');
-      for(let i =0; i< submitElements.length; i++){
-        submitElements[i].hidden = false;
-      }
+  function success(element) {
+    element.classList.remove('validation-failed');
+    element.classList.add('validation-success');
+    element.innerText = "ISBN ok :)";
+    showSubmit();
+  }
+
+  function failure(element) {
+    element.classList.remove('validation-success');
+    element.classList.add('validation-failed');
+    element.innerText = "Must be a valid ISBN";
+    hideSubmit();
+  }
+
+  function formatPrice(element) {
+    if (!element.value) {
+      element.value = 0;
     }
+    element.value = Number(element.value).toFixed(2).toString();
+  }
 
-    function success(element){
-      element.classList.remove('validation-failed');
-      element.classList.add('validation-success');
-      element.innerText = "ISBN ok :)";
-      showSubmit();
-    }
+  window.addEventListener('load', function () {
+    validateForm();
 
-    function failure(element){
-      element.classList.remove('validation-success');
-      element.classList.add('validation-failed');
-      element.innerText = "Must be a valid ISBN";
-      hideSubmit();
-    }
-
-    function formatPrice(element){
-      if(!element.value){
-        element.value=0;
-      }
-      element.value = Number(element.value).toFixed(2).toString();
-    }
-
-    window.addEventListener('load', function(){
-      validateForm();
-
-      let priceInput = document.getElementsByClassName('listing-price-input')[0];
+    let priceInput = document.getElementsByClassName('listing-price-input')[0];
+    formatPrice(priceInput);
+    priceInput.addEventListener('blur', function () {
       formatPrice(priceInput);
-      priceInput.addEventListener('blur', function(){
-        formatPrice(priceInput);
-      })
+    })
 
-      let isbnInput = document.getElementsByClassName('isbn-input')[0];
-      isbnInput.addEventListener('blur', function(){
-        doValidation(isbnInput,isbnInput.value);
-      });
-      isbnInput.addEventListener('input', function(){
-        doValidation(isbnInput,isbnInput.value);
-      })
+    let isbnInput = document.getElementsByClassName('isbn-input')[0];
+    isbnInput.addEventListener('blur', function () {
+      doValidation(isbnInput, isbnInput.value);
     });
+    isbnInput.addEventListener('input', function () {
+      doValidation(isbnInput, isbnInput.value);
+    })
+  });
 </script>
 
 <div class="page-title text-center">
     <h1>Edit listing</h1>
 </div>
 <div class="form-content text-center">
-    <form onsubmit="return validateForm()" action="/listings/<%= listing.uuid%>/edit"  method="post">
-        <p class="form-label">Book ISBN:</p>
-        <input class="isbn-input listing-input-box" type="text" name="isbn" required title="Book ISBN:" value="<%= listing.isbn%>">
-        <p class="validation-result">Must be a valid ISBN</p>
-        <p class="form-label">Book Title:</p>
-        <input class="listing-input-box" type="text" name="title" required title="Book Title:" value="<%= listing.title %>"><br>
-        <p class="form-label">Authors (Separate multiple authors with commas):</p>
-        <input class="listing-input-box listing-author-input" type="text" name="authors" required title="Authors" value="<%= listing.authors.join(', ') %>"><br>
-        <p class="form-label">Publisher (Optional):</p>
-        <input class="listing-input-box listing-publisher-input" type="text" name="publisher" title="Publisher:" value="<%= listing.publisher %>"><br>
-        <p class="form-label">Publication Date (Optional):</p>
-        <input class="listing-input-box listing-publication-date-input" type="date" max="<%= new Date().toJSON().substr(0,10)%>" name="publicationDate" title="Publication Date:" value="<%= listing.publicationDate.toJSON().substr(0,10) %>"><br>
-        <p class="form-label">Book Price (USD):</p>
-        <input class="listing-input-box listing-price-input" type="number" name="price" min="0" step="0.01" required value="<%= listing.price %>" title="Book Price (USD):"><br>
-        <input type="hidden" name="_csrf" value="<%= _csrf %>" />
-        <a href="/listings/<%= listing.uuid %>" class="small-button-red">&lt; Cancel</a>
-        <input class="submit large-button-green" type="submit" value="Update">
+    <form onsubmit="return validateForm()" action="/listings/<%= listing.uuid %>/edit" method="post"
+          style="display: table; width: 100%;">
+        <div class="form-input-container">
+            <p class="form-label">Book ISBN:</p>
+            <div class="form-validation-container">
+                <input class="isbn-input listing-input-box" type="text" name="isbn" required title="Book ISBN:"
+                       value="<%= listing.isbn %>">
+                <p class="validation-result">Must be a valid ISBN</p>
+            </div>
+        </div>
+        <div class="form-input-container">
+            <p class="form-label">Book Title:</p>
+            <input class="listing-input-box listing-title-input" type="text" name="title" required title="Book Title:"
+                   value="<%= listing.title %>">
+        </div>
+        <div class="form-input-container">
+            <p class="form-label">Authors (Separate multiple authors with commas):</p>
+            <input class="listing-input-box listing-author-input" type="text" name="authors" required title="Authors"
+                   value="<%= listing.authors.join(', ') %>">
+        </div>
+        <div class="form-input-container">
+            <p class="form-label">Publisher (Optional):</p>
+            <input class="listing-input-box listing-publisher-input" type="text" name="publisher" title="Publisher:"
+                   value="<%= listing.publisher %>">
+        </div>
+        <div class="form-input-container">
+            <p class="form-label">Publication Date (Optional):</p>
+            <input class="listing-input-box listing-publication-date-input" type="date"
+                   max="<%= new Date().toJSON().substr(0, 10) %>" name="publicationDate" title="Publication Date:"
+                   value="<%= listing.publicationDate.toJSON().substr(0, 10) %>">
+        </div>
+        <div class="form-input-container">
+            <p class="form-label">Book Price (USD):</p>
+            <input class="listing-input-box listing-price-input" type="number" name="price" min="0" step="0.01" required
+                   title="Book Price (USD):" value="<%= listing.price %>">
+        </div>
+        <input type="hidden" name="_csrf" value="<%= _csrf %>"/>
+        <br>
+        <div class="form-input-container">
+            <p style="display: table-cell; width: 50%; vertical-align: middle; text-align: right; padding-right: 5px;">
+                <a href="/listings/<%= listing.uuid %>" style="float:right;" class="small-button-red">&lt;
+                    Cancel</a>
+            </p>
+            <input style="visibility: hidden; display: table-cell; float: left; margin-left: 5px;"
+                   class="submit large-button-green" type="submit" value="Update">
+        </div>
 
     </form>
 </div>

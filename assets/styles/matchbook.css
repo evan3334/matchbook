@@ -112,6 +112,11 @@
   font-size: 10pt;
   font-family: sans-serif;
   margin:auto;
+  float:left;
+  width:100%;
+  text-align: left;
+  padding-left: 5px;
+  transition: opacity 250ms;
 }
 
 .validation-failed {
@@ -120,14 +125,8 @@
 }
 
 .validation-success {
-  color: #008000;
+  color: #ffffff;
   opacity: 0;
-}
-
-.form-label{
-  font-family: sans-serif;
-  margin-top:15px;
-  margin-bottom:1px;
 }
 
 .listing-property-title{
@@ -235,12 +234,6 @@
   color: black;
 }
 
-.isbn-input{
-  width: 9em;
-  font-family: monospace;
-  text-align: center;
-}
-
 .listing-cover{
   max-width:100%;
 }
@@ -279,15 +272,29 @@
   font-size: 15px;
   margin: 5px;
   border: 2px solid lightblue;
-  border-radius: 2px
+  border-radius: 2px;
+  display: table-cell;
+  float: left;
 }
 
 .listing-input-box:focus{
   box-shadow: 1px 1px 30px #909090;
 }
 
+
+.form-label{
+  font-family: sans-serif;
+  margin-top:15px;
+  margin-bottom:1px;
+  display: table-cell;
+  text-align: right;
+  vertical-align: middle;
+  width: 50%;
+}
+
 .login-input {
   padding: 7px;
+  display: table-cell;
   font-size: 1em;
   width: 16em;
   margin: 5px;
@@ -315,4 +322,23 @@
   font-size: 18px;
   font-family: monospace;
   width: 8em;
+}
+
+.listing-publication-date-input {
+  width: 9em;
+}
+
+.isbn-input{
+  width: 9em;
+  font-family: monospace;
+  text-align: center;
+}
+
+.form-input-container{
+  width: 100%;
+  display:table-row;
+}
+
+.form-validation-container{
+  display:table-cell;
 }

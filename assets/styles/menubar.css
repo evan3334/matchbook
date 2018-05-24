@@ -1,5 +1,7 @@
 .menu-bar{
   background-color: #00c500;
+  position: sticky;
+  top:0;
 }
 
 .menu-bar-button{
