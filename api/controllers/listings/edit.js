@@ -33,6 +33,21 @@ module.exports = {
         return value>0 && ((value*100)%1)===0; //make sure the number is positive and has 2 decimal places max
       },
       required: true
+    },
+    authors: {
+      description: 'The author(s) of the book',
+      type: 'string',
+      required: true
+    },
+    publisher: {
+      description: 'The publisher of the book',
+      type: 'string',
+      required: false
+    },
+    publicationDate: {
+      description: 'The publication date of the book',
+      type: 'string',
+      required: false
     }
   },
 
@@ -49,12 +64,30 @@ module.exports = {
       var listing = await Listing.findOne({uuid: inputs.uuid}).populate('creator');
       if(listing){
         if(listing.creator.uuid === user.uuid || user.admin){
-          var newlisting = await Listing.update({uuid:inputs.uuid},{
-            title:inputs.title,
+          //parse the authors first
+          let authorArray = inputs.authors.split(',');
+          authorArray.forEach(function(each, index){
+            authorArray[index] = each.trim();
+          });
+
+          let attributes = {
+            title: inputs.title,
             isbn: inputs.isbn,
             price: inputs.price,
-            creator: objId
-          }).fetch();
+            uuid: inputs.uuid,
+            creator: objId,
+            authors: authorArray
+          };
+
+          if(inputs.publisher){
+            attributes.publisher = inputs.publisher;
+          }
+
+          if(inputs.publicationDate){
+            attributes.publicationDate = new Date(inputs.publicationDate);
+          }
+
+          await Listing.update({uuid:inputs.uuid},attributes).fetch();
           return exits.displayListing('/listings/'+inputs.uuid);
         }
         else{
