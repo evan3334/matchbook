@@ -1,0 +1,27 @@
+.home-panel-1 {
+  padding: 20px;
+  height: calc(50vh - 3.925em);
+  min-height: 10em;
+  background-color: #ff0000;
+}
+
+.home-panel-2 {
+  padding: 20px;
+  height: calc(50vh - 3.925em);
+  min-height: 10em;
+  background-color: #00ff00;
+}
+
+.home-panel-3 {
+  padding: 20px;
+  height: calc(50vh - 3.925em);
+  min-height: 10em;
+  background-color: #0000ff;
+}
+
+.homepage-title {
+  font-family: sans-serif;
+  color: white;
+  font-size: 2em;
+  font-weight: bold;
+}
