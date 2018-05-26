@@ -15,13 +15,23 @@
   padding: 20px;
   height: calc(50vh - 3.925em);
   min-height: 20em;
-  background-color: #00ff00;
+  background-color: #159db9;
+  transition: background-color 500ms;
+}
+
+.home-panel-2:hover {
+  background-color: #15bbd6;
 }
 
 .home-panel-3 {
   padding: 20px;
-  min-height: 20em;
-  background-color: #0000ff;
+  min-height: calc(50vh - 3.925em);
+  background-color: #8940ff;
+  transition: background-color 500ms;
+}
+
+.home-panel-3:hover {
+  background-color: #985cf9;
 }
 
 .homepage-title {
