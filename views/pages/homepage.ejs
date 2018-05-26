@@ -1,18 +1,64 @@
 <div class="text-center">
+    <% if(!req.session.me){ %>
     <div class="home-panel-1">
         <p class="homepage-title">
             Welcome to Matchbook!
         </p>
-
+        <p class="homepage-subtitle">
+            <i>What is Matchbook?</i>
+        </p>
+        <p class="homepage-info">
+            Matchbook is a site for listing and finding used textbooks for sale. Can't find any underclassmen to sell your book to? Book buybacks won't give you what your books are worth? Matchbook was made for you.
+        </p>
+        <br>
+        <a class="large-button-green" href="/register/">
+            Get started today &gt;
+        </a>
     </div>
+    <% } %>
     <div class="home-panel-2">
         <p class="homepage-title">
             Looking to buy?
         </p>
+        <p class="homepage-subtitle" style="margin-bottom:0.25em;">
+            Search for an ISBN
+        </p>
+        <br>
+        <div class="button-container-spacer">
+        <a class="large-button-red">
+            Coming soon!
+        </a>
+        </div>
+        <p class="homepage-subtitle" style="margin-bottom:0.25em;">
+            Browse the catalog
+        </p>
+        <br>
+        <a class="large-button-green" href="/listings/">
+            See all listings &gt;
+        </a>
     </div>
     <div class="home-panel-3">
         <p class="homepage-title">
-            Start Selling
+            Sell Your Textbooks
         </p>
+        <%if(!(req.session.me && req.session.me.verified)){%>
+        <p class="homepage-info">
+            You can start listing your textbooks as soon as you have an account. Signing up is easy, and only takes a minute or two. All you will need is a valid email address. Click the button below to sign up.
+        </p>
+        <br>
+        <div class="button-container-spacer">
+        <a class="large-button-green" href="/register/">
+            Register a new account &gt;
+        </a>
+        </div>
+        <br>
+        <%}%>
+        <p class="homepage-info">
+            To post your textbook for sale, all you'll need is a bit of information about the book, like the ISBN, title, or authors. This will help potential buyers find your book. Click the button below to get started!
+        </p>
+        <br>
+        <a class="large-button-green" href="/listings/create">
+            Post a new listing &gt;
+        </a>
     </div>
 </div>
