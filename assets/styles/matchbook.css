@@ -293,6 +293,10 @@
   padding-right:5px;
 }
 
+.form-content {
+  overflow-x: hidden;
+}
+
 .login-input {
   padding: 7px;
   display: table-cell;
