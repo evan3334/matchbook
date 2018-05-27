@@ -1,22 +1,55 @@
 <script>
     function openDeleteModal(){
-      var overlay = document.getElementsByClassName('modal-overlay')[0];
+      let overlay = document.getElementById('delete-modal-overlay');
       overlay.style.visibility = 'visible';
+      overlay.style.opacity='1.0';
+      overlay.style.transitionDelay='0s';
     }
 
     function closeDeleteModal(){
-      var overlay = document.getElementsByClassName('modal-overlay')[0];
+      let overlay = document.getElementById('delete-modal-overlay');
       overlay.style.visibility = 'hidden';
+      overlay.style.opacity='0';
+      overlay.style.transition='visibility 0s linear 200ms, opacity 200ms linear';
     }
 
     function reallyDelete(){
-      var form = document.getElementsByClassName('delete-confirm-form')[0];
+      let form = document.getElementsByClassName('delete-confirm-form')[0];
       form.submit();
     }
 
-    <%if (typeof showDelete !== 'undefined' && showDelete){ %>
+    function openInterestModal(){
+      let overlay = document.getElementById('interest-modal-overlay');
+      overlay.style.visibility = 'visible';
+      overlay.style.opacity='1.0';
+      overlay.style.transitionDelay='0s';
+    }
+
+    function closeInterestModal(){
+      let overlay = document.getElementById('interest-modal-overlay');
+      overlay.style.visibility = 'hidden';
+      overlay.style.opacity='0';
+      overlay.style.transition='visibility 0s linear 200ms, opacity 200ms linear';
+    }
+
+    function submitInterest(){
+      let form = document.getElementsByClassName('interest-submit-form')[0];
+      form.submit();
+    }
+
+    <%
+    let deleteRequested = (typeof showDelete !== 'undefined' && showDelete);
+    let interestRequested = (typeof showInterest !== 'undefined' && showInterest);
+    %>
+
+    <%if (deleteRequested && !interestRequested){ %>
     window.addEventListener('load',function(){
       openDeleteModal();
+    }, false);
+    <%}%>
+    <%if(interestRequested && !deleteRequested){%>
+    window.addEventListener('load',function(){
+      openInterestModal();
     }, false);
     <%}%>
 </script>
@@ -69,9 +102,15 @@ function formatdate(date){
             <% if(!owner){%>
             <p class="listing-seller-large">Interested in buying?</p>
             <div style="margin-top:1em;">
-                <span style="margin-left:10px;" class="large-button-green">
+                <%if(req.session.me && req.session.me.verified){%>
+                <span style="margin-left:10px;" class="large-button-green" onclick="openInterestModal()">
                     Contact the seller
                 </span>
+                <%}else{%>
+                <a style="margin-left: 10px;" class="large-button-green" href="/login/?redirect=<%=encodeURIComponent('/listings/'+listing.uuid+'/interested')%>">
+                    Contact the seller
+                </a>
+                <%}%>
             </div>
             <%} %>
         </div>
@@ -88,8 +127,7 @@ function formatdate(date){
         <a class="large-button-green center-button" href="/listings/<%= listing.uuid %>/edit">Edit this listing</a>
         <span class="large-button-red center-button" onclick="openDeleteModal()">Delete this listing</span>
     </div>
-        <div class="modal-overlay" style="visibility: hidden">
-
+        <div id="delete-modal-overlay" class="modal-overlay" style="visibility: hidden">
             <div class="modal-dialog-box text-center">
                 <p class="page-title">Really delete this listing?</p>
                 <p class="page-subtitle">It will be lost forever, and there is no way to recover it!</p>
@@ -105,6 +143,24 @@ function formatdate(date){
             </div>
         </div>
         <% } %>
+<div id="interest-modal-overlay" class="modal-overlay" style="visibility: hidden;opacity: 0">
+    <div class="modal-dialog-box-wide text-center">
+        <p class="page-title">Contact seller</p>
+        <p class="page-subtitle">Please type a message to the seller below. The seller will be sent an email with details about the listing you are interested in. The seller will also be provided with your registered email address so that they can contact you about the book.</p>
+        <form class="interest-submit-form" action="/listings/<%= listing.uuid %>/interested" method="post">
+            <textarea class="modal-textarea" title="Message" name="message">
+Hi <%=listing.creator.name%>,
+  I am interested in buying your copy of "<%=listing.title%>" that you listed on Matchbook. You can contact me at the email address included in this message.</textarea>
+            <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+        </form>
+        <div class="large-button-red left" onclick="closeInterestModal()">
+            <span class="large-button-inner">&lt; Cancel</span>
+        </div>
+        <div class="large-button-green right" onclick="submitInterest()">
+            <span class="large-button-inner">Send &gt;</span>
+        </div>
+    </div>
+</div>
 <% } else { %>
 <div class="text-center">
     <h1>ERROR: Listing could not be displayed</h1>

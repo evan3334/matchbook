@@ -39,6 +39,8 @@ module.exports.routes = {
   'GET /listings/:uuid/delete' : 'pages.deletepage',
   'POST /listings/:uuid/delete' : 'listings.delete',
   'GET /account/verify' : 'pages.verifypage',
+  'GET /listings/:uuid/interested':'pages.interestedpage',
+  'POST /listings/:uuid/interested':'listings.interested',
 
 
   /***************************************************************************

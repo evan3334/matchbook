@@ -164,7 +164,11 @@ span.small-button-red{
   top: 0;
   z-index: 99;
   background-color: rgba(50,50,50, 0.5);
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s linear 200ms, opacity 200ms linear;
 }
+
 .modal-dialog-box {
   overflow: auto;
   position:relative;
@@ -175,6 +179,35 @@ span.small-button-red{
   top: 50%;
   transform: translateY(-50%);
   background-color: rgba(255,255,255,1.0);
+}
+
+.modal-dialog-box-wide {
+  overflow: auto;
+  position:relative;
+  max-width:700px;
+  margin: auto;
+  border-radius:10px;
+  padding: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255,255,255,1.0);
+}
+
+.modal-textarea {
+  width:100%;
+  height:100%;
+  margin: 0.75em 0.75em 1em;
+  max-width: calc(700px - 1.5em);
+  min-width: calc(700px - 1.5em);
+  max-height: 50vh;
+  min-height: 10vh;
+  overflow:visible;
+  border:2px solid lightblue;
+  border-radius:5px;
+}
+
+.modal-textarea:focus {
+  box-shadow: 1px 1px 30px #9f9f9f;
 }
 
 .listings-container{
