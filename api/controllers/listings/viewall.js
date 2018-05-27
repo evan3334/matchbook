@@ -33,11 +33,14 @@ module.exports = {
   },
 
   fn: async function (inputs, exits){
-    var listings;
-    var all = true;
+    let listings;
+    let all = true;
     try {
       if (inputs.isbn) {
         listings = await Listing.find({isbn: inputs.isbn}).populate('creator');
+        for(let i =0; i<listings.length; i++){
+          listings[i] = await Listing.fillAttributes(listings[i]);
+        }
         all=false;
       }
       else {

@@ -1,45 +1,119 @@
 <script>
-    function openModal(){
-      var overlay = document.getElementsByClassName('modal-overlay')[0];
+    function openDeleteModal(){
+      let overlay = document.getElementById('delete-modal-overlay');
       overlay.style.visibility = 'visible';
+      overlay.style.opacity='1.0';
+      overlay.style.transitionDelay='0s';
     }
 
-    function closeModal(){
-      var overlay = document.getElementsByClassName('modal-overlay')[0];
+    function closeDeleteModal(){
+      let overlay = document.getElementById('delete-modal-overlay');
       overlay.style.visibility = 'hidden';
+      overlay.style.opacity='0';
+      overlay.style.transition='visibility 0s linear 200ms, opacity 200ms linear';
     }
 
     function reallyDelete(){
-      var form = document.getElementsByClassName('delete-confirm-form')[0];
+      let form = document.getElementsByClassName('delete-confirm-form')[0];
       form.submit();
     }
 
-    <%if (typeof showDelete !== 'undefined' && showDelete){ %>
+    function openInterestModal(){
+      let overlay = document.getElementById('interest-modal-overlay');
+      overlay.style.visibility = 'visible';
+      overlay.style.opacity='1.0';
+      overlay.style.transitionDelay='0s';
+    }
+
+    function closeInterestModal(){
+      let overlay = document.getElementById('interest-modal-overlay');
+      overlay.style.visibility = 'hidden';
+      overlay.style.opacity='0';
+      overlay.style.transition='visibility 0s linear 200ms, opacity 200ms linear';
+    }
+
+    function submitInterest(){
+      let form = document.getElementsByClassName('interest-submit-form')[0];
+      form.submit();
+    }
+
+    <%
+    let deleteRequested = (typeof showDelete !== 'undefined' && showDelete);
+    let interestRequested = (typeof showInterest !== 'undefined' && showInterest);
+    %>
+
+    <%if (deleteRequested && !interestRequested){ %>
     window.addEventListener('load',function(){
-      openModal();
+      openDeleteModal();
+    }, false);
+    <%}%>
+    <%if(interestRequested && !deleteRequested){%>
+    window.addEventListener('load',function(){
+      openInterestModal();
     }, false);
     <%}%>
 </script>
 
-<% if(listing) { %>
-    <div class="page-title text-center">
-        <span class="listing-title"><%= listing.title %></span>
-    </div>
-    <div class="listing-properties text-center">
-        <ul style="padding:5px;">
-            <li class="listing-property-container">
-                <span class="listing-property-title">Sold By: </span>
-                <span class="listing-property-value"><%= listing.creator.name %></span>
-            </li>
-            <li class="listing-property-container">
-                <span class="listing-property-title">ISBN: </span>
-                <span class="listing-property-value"><%= listing.isbn %></span>
-            </li>
-            <li class="listing-property-container">
-                <span class="listing-property-title">Price: </span>
-                <span class="listing-property-value"><%= listing.price %></span>
-            </li>
-        </ul>
+<%
+//formatting functions
+
+function formatprice(price){
+  return price.toFixed(2);
+}
+
+function formatdate(date){
+  var monthNames = [
+    "January", "February", "March",
+    "April", "May", "June", "July",
+    "August", "September", "October",
+    "November", "December"
+  ];
+
+  var day = date.getUTCDate();
+  var month = monthNames[date.getUTCMonth()];
+  var year = date.getUTCFullYear();
+
+  return month+' '+day+', '+year;
+}
+
+%>
+<% if(typeof listing !== 'undefined' && listing) { %>
+    <div class="listing-container-large">
+        <div class="cover-container-large">
+            <img class="listing-cover-large" src="<%=listing.cover%>"/>
+        </div>
+        <div class="property-container-large">
+            <p class="listing-title-large" ><%= listing.title %></p>
+            <p class="listing-authors-large">By <%= listing.authors.join(', ')%></p>
+            <% if (listing.publisher || listing.publicationDate){%>
+            <p class="listing-publisher-large">
+                Published
+                <%if(listing.publisher){%>
+                by <b><%= listing.publisher %> </b>
+                <%}%>
+                <%if(listing.publicationDate){%>
+                on <b><%= formatdate(listing.publicationDate)%></b>
+                <%}%>
+            </p>
+            <% } %>
+            <p class="listing-isbn-large"><b>ISBN: </b><%= listing.isbn %></p>
+            <p class="listing-price-large">$<%= formatprice(listing.price) %></p>
+            <p class="listing-seller-large"><b>Seller: </b><%= listing.creator.name %></p>
+            <% if(!owner){%>
+            <p class="listing-seller-large">Interested in buying?</p>
+            <div style="margin-top:1em;">
+                <%if(req.session.me && req.session.me.verified){%>
+                <span style="margin-left:10px;" class="large-button-green" onclick="openInterestModal()">
+                    Contact the seller
+                </span>
+                <%}else{%>
+                <a style="margin-left: 10px;" class="large-button-green" href="/login/?redirect=<%=encodeURIComponent('/listings/'+listing.uuid+'/interested')%>">
+                    Contact the seller
+                </a>
+                <%}%>
+            </div>
+            <%} %>
+        </div>
     </div>
 
     <% if(admin && !owner) { %>
@@ -49,16 +123,15 @@
     <% } %>
 
     <% if(owner || admin){ %>
-    <div class="text-center">
+    <div class="text-center" style="margin:1em">
         <a class="large-button-green center-button" href="/listings/<%= listing.uuid %>/edit">Edit this listing</a>
-        <span class="large-button-red center-button" onclick="openModal()">Delete this listing</span>
+        <span class="large-button-red center-button" onclick="openDeleteModal()">Delete this listing</span>
     </div>
-        <div class="modal-overlay" style="visibility: hidden">
-
+        <div id="delete-modal-overlay" class="modal-overlay" style="visibility: hidden">
             <div class="modal-dialog-box text-center">
                 <p class="page-title">Really delete this listing?</p>
                 <p class="page-subtitle">It will be lost forever, and there is no way to recover it!</p>
-                <div class="large-button-green left" onclick="closeModal()">
+                <div class="large-button-green left" onclick="closeDeleteModal()">
                     <span class="large-button-inner">&lt; Cancel</span>
                 </div>
                 <div class="large-button-red right" onclick="reallyDelete()">
@@ -70,6 +143,24 @@
             </div>
         </div>
         <% } %>
+<div id="interest-modal-overlay" class="modal-overlay" style="visibility: hidden;opacity: 0">
+    <div class="modal-dialog-box-wide text-center">
+        <p class="page-title">Contact seller</p>
+        <p class="page-subtitle">Please type a message to the seller below. The seller will be sent an email with details about the listing you are interested in. The seller will also be provided with your registered email address so that they can contact you about the book.</p>
+        <form class="interest-submit-form" action="/listings/<%= listing.uuid %>/interested" method="post">
+            <textarea class="modal-textarea" title="Message" name="message">
+Hi <%=listing.creator.name%>,
+  I am interested in buying your copy of "<%=listing.title%>" that you listed on Matchbook. You can contact me at the email address included in this message.</textarea>
+            <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+        </form>
+        <div class="large-button-red left" onclick="closeInterestModal()">
+            <span class="large-button-inner">&lt; Cancel</span>
+        </div>
+        <div class="large-button-green right" onclick="submitInterest()">
+            <span class="large-button-inner">Send &gt;</span>
+        </div>
+    </div>
+</div>
 <% } else { %>
 <div class="text-center">
     <h1>ERROR: Listing could not be displayed</h1>

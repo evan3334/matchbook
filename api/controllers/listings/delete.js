@@ -2,13 +2,13 @@ var uuid = require('uuid');
 
 module.exports = {
 
-  friendlyName: 'Edit Existing Listing',
+  friendlyName: 'Delete Listing',
 
-  description: 'Update an existing listing with the given parameters',
+  description: 'Delete a given listing',
 
   inputs: {
     uuid: {
-      description: 'The UUID of the listing to update',
+      description: 'The UUID of the listing to delete',
       type: 'string',
       required: true,
       isUUID: true
