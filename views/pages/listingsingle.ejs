@@ -1,10 +1,10 @@
 <script>
-    function openModal(){
+    function openDeleteModal(){
       var overlay = document.getElementsByClassName('modal-overlay')[0];
       overlay.style.visibility = 'visible';
     }
 
-    function closeModal(){
+    function closeDeleteModal(){
       var overlay = document.getElementsByClassName('modal-overlay')[0];
       overlay.style.visibility = 'hidden';
     }
@@ -16,30 +16,65 @@
 
     <%if (typeof showDelete !== 'undefined' && showDelete){ %>
     window.addEventListener('load',function(){
-      openModal();
+      openDeleteModal();
     }, false);
     <%}%>
 </script>
 
-<% if(listing) { %>
-    <div class="page-title text-center">
-        <span class="listing-title"><%= listing.title %></span>
-    </div>
-    <div class="listing-properties text-center">
-        <ul style="padding:5px;">
-            <li class="listing-property-container">
-                <span class="listing-property-title">Sold By: </span>
-                <span class="listing-property-value"><%= listing.creator.name %></span>
-            </li>
-            <li class="listing-property-container">
-                <span class="listing-property-title">ISBN: </span>
-                <span class="listing-property-value"><%= listing.isbn %></span>
-            </li>
-            <li class="listing-property-container">
-                <span class="listing-property-title">Price: </span>
-                <span class="listing-property-value"><%= listing.price %></span>
-            </li>
-        </ul>
+<%
+//formatting functions
+
+function formatprice(price){
+  return price.toFixed(2);
+}
+
+function formatdate(date){
+  var monthNames = [
+    "January", "February", "March",
+    "April", "May", "June", "July",
+    "August", "September", "October",
+    "November", "December"
+  ];
+
+  var day = date.getUTCDate();
+  var month = monthNames[date.getUTCMonth()];
+  var year = date.getUTCFullYear();
+
+  return month+' '+day+', '+year;
+}
+
+%>
+<% if(typeof listing !== 'undefined' && listing) { %>
+    <div class="listing-container-large">
+        <div class="cover-container-large">
+            <img class="listing-cover-large" src="<%=listing.cover%>"/>
+        </div>
+        <div class="property-container-large">
+            <p class="listing-title-large" ><%= listing.title %></p>
+            <p class="listing-authors-large">By <%= listing.authors.join(', ')%></p>
+            <% if (listing.publisher || listing.publicationDate){%>
+            <p class="listing-publisher-large">
+                Published
+                <%if(listing.publisher){%>
+                by <b><%= listing.publisher %> </b>
+                <%}%>
+                <%if(listing.publicationDate){%>
+                on <b><%= formatdate(listing.publicationDate)%></b>
+                <%}%>
+            </p>
+            <% } %>
+            <p class="listing-isbn-large"><b>ISBN: </b><%= listing.isbn %></p>
+            <p class="listing-price-large">$<%= formatprice(listing.price) %></p>
+            <p class="listing-seller-large"><b>Seller: </b><%= listing.creator.name %></p>
+            <% if(!owner){%>
+            <p class="listing-seller-large">Interested in buying?</p>
+            <div style="margin-top:1em;">
+                <span style="margin-left:10px;" class="large-button-green">
+                    Contact the seller
+                </span>
+            </div>
+            <%} %>
+        </div>
     </div>
 
     <% if(admin && !owner) { %>
@@ -49,16 +84,16 @@
     <% } %>
 
     <% if(owner || admin){ %>
-    <div class="text-center">
+    <div class="text-center" style="margin:1em">
         <a class="large-button-green center-button" href="/listings/<%= listing.uuid %>/edit">Edit this listing</a>
-        <span class="large-button-red center-button" onclick="openModal()">Delete this listing</span>
+        <span class="large-button-red center-button" onclick="openDeleteModal()">Delete this listing</span>
     </div>
         <div class="modal-overlay" style="visibility: hidden">
 
             <div class="modal-dialog-box text-center">
                 <p class="page-title">Really delete this listing?</p>
                 <p class="page-subtitle">It will be lost forever, and there is no way to recover it!</p>
-                <div class="large-button-green left" onclick="closeModal()">
+                <div class="large-button-green left" onclick="closeDeleteModal()">
                     <span class="large-button-inner">&lt; Cancel</span>
                 </div>
                 <div class="large-button-red right" onclick="reallyDelete()">
