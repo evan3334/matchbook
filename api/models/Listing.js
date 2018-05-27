@@ -57,5 +57,17 @@ module.exports = {
       required: false,
       defaultsTo: sails.config.custom.siteAddress+'/images/defaultcover.png'
     }
+  },
+
+  fillAttributes: async function fillAttributes(listing){
+    let keys = Object.keys(module.exports.attributes);
+    for(let key of keys){
+      if(typeof listing[key]==='undefined'){
+        if(typeof module.exports.attributes[key].defaultsTo!=='undefined'){
+          listing[key] = module.exports.attributes[key].defaultsTo;
+        }
+      }
+    }
+    return listing;
   }
 };

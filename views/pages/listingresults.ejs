@@ -20,7 +20,7 @@
                 </div>
                 <div class="property-container">
                     <p class="listing-title" ><%= current.title %></p>
-                    <p class="listing-authors"><%= current.authors.join(', ')%></p>
+                    <p class="listing-authors"><%= (current.authors ? current.authors.join(', ') : "Anonymous")%></p>
                     <p class="listing-isbn"><b>ISBN: </b><%= current.isbn %></p>
                     <% if (current.publisher){%>
                     <p class="listing-publisher"><b>Publisher: </b><%= current.publisher %></p>

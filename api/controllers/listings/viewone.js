@@ -30,13 +30,14 @@ module.exports = {
 
   fn: async function (inputs, exits){
     try {
-      var listing = await Listing.findOne({uuid: inputs.uuid}).populate('creator');
+      let listing = await Listing.findOne({uuid: inputs.uuid}).populate('creator');
+      listing = await Listing.fillAttributes(listing);
       if (listing == null) {
         return exits.notFound();
       }
       else{
-        var owner = false;
-        var admin = false;
+        let owner = false;
+        let admin = false;
         if(this.req.session.me && this.req.session.me.uuid === listing.creator.uuid){
           owner = true;
         }
