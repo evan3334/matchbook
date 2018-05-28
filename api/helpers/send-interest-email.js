@@ -74,7 +74,7 @@ module.exports = {
             'The buyer writes:' +
             '</p>' +
             '<p style="font-family: monospace; font-size:1em;">' +
-            inputs.message +
+            inputs.message.replace(new RegExp('\n','g'),'<br>') +
             '</p>' +
             '<p style="font-family: sans-serif; font-size: 1em;">' +
             'You can contact ' + buyer.name + ' at <a href="mailto:'+buyer.email+'">'+buyer.email+'</a> to negotiate a sale. If you do not wish to talk to this buyer, you can simply ignore this message.'+

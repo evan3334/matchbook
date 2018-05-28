@@ -37,7 +37,7 @@ module.exports = {
       type: 'json',
       columnType: 'array',
       required: false,
-      defaultsTo: ['Anonymous', 'Anonymous 2'],
+      defaultsTo: ['Unknown'],
     },
     publisher:{
       type: 'string',

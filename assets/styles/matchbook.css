@@ -194,13 +194,11 @@ span.small-button-red{
 }
 
 .modal-textarea {
-  width:100%;
   height:100%;
   margin: 0.75em 0.75em 1em;
-  max-width: calc(700px - 1.5em);
-  min-width: calc(700px - 1.5em);
+  width: 90%;
   max-height: 50vh;
-  min-height: 10vh;
+  min-height: 20vh;
   overflow:visible;
   border:2px solid lightblue;
   border-radius:5px;
@@ -216,6 +214,8 @@ span.small-button-red{
   min-width: 200px;
   margin-left: 15%;
   margin-right: 15%;
+  padding-top:1em;
+  clear:both;
 }
 
 .listing-link{
@@ -485,4 +485,68 @@ span.small-button-red{
     float:left;
     width:100%;
   }
+}
+
+
+.pagination-container{
+  width:70%;
+  margin: 1em 15%;
+  text-align: center;
+}
+
+.page-number {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  display:inline-block;
+  font-family:sans-serif;
+}
+
+.search-bar-container {
+  margin-left: 35%;
+  margin-right:35%;
+}
+
+.search-button-black {
+  float: right;
+  vertical-align: middle;
+  width: 2em;
+  padding: 2px;
+  height: 2em;
+  border-radius: 5px;
+  transition: background-color 250ms;
+  cursor: pointer;
+}
+
+.search-button-black:hover {
+  background-color: #a7ffe7;
+}
+
+.search-button-white {
+  float: right;
+  vertical-align: middle;
+  width: 2em;
+  padding: 2px;
+  height: 2em;
+  border-radius: 5px;
+  transition: background-color 250ms;
+  cursor: pointer;
+}
+
+.search-button-white:hover {
+  background-color: #ff0f0f;
+}
+
+.search-bar{
+  width: calc(100% - 3.25em);
+  font-size: 1em;
+  font-family: sans-serif;
+  padding: 5px;
+  border: 2px solid lightblue;
+  border-radius: 5px;
+}
+
+.search-icon {
+  width:100%;
+  height: 100%;
 }
