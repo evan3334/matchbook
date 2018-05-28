@@ -1,3 +1,15 @@
+<script>
+  function doSearch(){
+    let form = document.getElementsByClassName('search-form')[0];
+    let searchbar = document.getElementsByClassName('search-bar')[0];
+    if(searchbar.value.trim()!==''){
+      form.submit();
+    }
+    else{
+      return false;
+    }
+  }
+</script>
 <div class="text-center">
     <% if(!req.session.me){ %>
     <div class="home-panel-1">
@@ -24,10 +36,13 @@
             Search for an ISBN
         </p>
         <br>
-        <div class="button-container-spacer">
-        <a class="large-button-red">
-            Coming soon!
-        </a>
+        <div class="search-bar-container">
+            <form class="search-form" onsubmit="doSearch()" action="/listings/" method="get">
+                <input class="search-bar" name="isbn" placeholder="Search for an ISBN..." <%if(req.query.isbn){%>value="<%=req.query.isbn%>"<%}%>>
+                <span class="search-button-white" onclick="doSearch()">
+            <img src="/images/searchiconwhite.svg" class="search-icon">
+        </span>
+            </form>
         </div>
         <p class="homepage-subtitle" style="margin-bottom:0.25em;">
             Browse the catalog

@@ -2,6 +2,43 @@
    return price.toFixed(2);
 }%>
 
+<script>
+  function setGetParameter(paramName, paramValue)
+  {
+    let url = window.location.href;
+    let hash = location.hash;
+    url = url.replace(hash, '');
+    if (url.indexOf("?") >= 0)
+    {
+      let params = url.substring(url.indexOf("?") + 1).split("&");
+      let paramFound = false;
+      params.forEach(function(param, index) {
+        let p = param.split("=");
+        if (p[0] === paramName) {
+          params[index] = paramName + "=" + paramValue;
+          paramFound = true;
+        }
+      });
+      if (!paramFound) params.push(paramName + "=" + paramValue);
+      url = url.substring(0, url.indexOf("?")+1) + params.join("&");
+    }
+    else
+      url += "?" + paramName + "=" + paramValue;
+    window.location.href = url + hash;
+  }
+
+  function doSearch(){
+    let form = document.getElementsByClassName('search-form')[0];
+    let searchbar = document.getElementsByClassName('search-bar')[0];
+    if(searchbar.value.trim()!==''){
+      form.submit();
+    }
+    else{
+      return false;
+    }
+  }
+</script>
+
 <div class="page-title" style="text-align: center;">
     <% if(all){ %>
         <h1>All Listings</h1>
@@ -9,30 +46,66 @@
         <h1>Search Results</h1>
     <% } %>
 </div>
-<div class="listings-container">
-    <% if(results && results.length > 0){ %>
-        <% for (var i = 0; i < results.length; i++){ %>
-            <% var current = results[i]; %>
-            <a class="listing-link" href="/listings/<%= current.uuid %>">
-            <div class="listing-container">
-                <div class="cover-container">
-                    <img class="listing-cover" src="<%=current.cover%>"/>
+<div class="search-bar-container">
+    <form class="search-form" onsubmit="doSearch()" action="/listings/" method="get">
+        <input class="search-bar" name="isbn" placeholder="Search for an ISBN..." <%if(req.query.isbn){%>value="<%=req.query.isbn%>"<%}%>>
+        <span class="search-button-black" onclick="doSearch()">
+            <img src="/images/searchiconblack.svg" class="search-icon">
+        </span>
+    </form>
+</div>
+<div>
+    <div class="pagination-container" <%if(maxpages===1){%>style="overflow:auto"<%}%>>
+        <%if(page>1){%>
+        <span style="float:left;" class="large-button-green" onclick="setGetParameter('page',<%=page-1%>)">
+            &lt; Previous
+        </span>
+        <%}%>
+        <p class="page-number">Page <b><%=page%></b> of <b><%=maxpages%></b></p>
+        <%if(page<maxpages){%>
+        <span style="float:right;" class="large-button-green" onclick="setGetParameter('page',<%=page+1%>)">
+            Next &gt;
+        </span>
+        <%}%>
+    </div>
+    <div class="listings-container">
+        <% if(results && results.length > 0){ %>
+            <% for (let i = 0; i < results.length; i++){ %>
+                <% let current = results[i]; %>
+                <a class="listing-link" href="/listings/<%= current.uuid %>">
+                <div class="listing-container">
+                    <div class="cover-container">
+                        <img class="listing-cover" src="<%=current.cover%>"/>
+                    </div>
+                    <div class="property-container">
+                        <p class="listing-title" ><%= current.title %></p>
+                        <p class="listing-authors"><%= current.authors.join(', ')%></p>
+                        <p class="listing-isbn"><b>ISBN: </b><%= current.isbn %></p>
+                        <% if (current.publisher){%>
+                        <p class="listing-publisher"><b>Publisher: </b><%= current.publisher %></p>
+                        <% } %>
+                        <p class="listing-price">$<%= formatprice(current.price) %></p>
+                        <p class="listing-seller"><b>Seller: </b><%= current.creator.name %></p>
+                    </div>
                 </div>
-                <div class="property-container">
-                    <p class="listing-title" ><%= current.title %></p>
-                    <p class="listing-authors"><%= (current.authors ? current.authors.join(', ') : "Anonymous")%></p>
-                    <p class="listing-isbn"><b>ISBN: </b><%= current.isbn %></p>
-                    <% if (current.publisher){%>
-                    <p class="listing-publisher"><b>Publisher: </b><%= current.publisher %></p>
-                    <% } %>
-                    <p class="listing-price">$<%= formatprice(current.price) %></p>
-                    <p class="listing-seller"><b>Seller: </b><%= current.creator.name %></p>
-                </div>
-            </div>
-            </a>
+                </a>
 
+            <% } %>
+        <% } else { %>
+            <h3>Sorry, no results. Please try different search criteria.</h3>
         <% } %>
-    <% } else { %>
-        <h3>Sorry, no results. Please try different search criteria.</h3>
-    <% } %>
+    </div>
+    <div class="pagination-container">
+        <%if(page>1){%>
+        <span style="float:left;" class="large-button-green" onclick="setGetParameter('page',<%=page-1%>)">
+            &lt; Previous
+        </span>
+        <%}%>
+        <p class="page-number">Page <b><%=page%></b> of <b><%=maxpages%></b></p>
+        <%if(page<maxpages){%>
+        <span style="float:right;" class="large-button-green" onclick="setGetParameter('page',<%=page+1%>)">
+            Next &gt;
+        </span>
+        <%}%>
+    </div>
 </div>
