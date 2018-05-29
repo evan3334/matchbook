@@ -22,14 +22,14 @@
   function hideSubmit() {
     let submitElements = document.getElementsByClassName('submit');
     for (let i = 0; i < submitElements.length; i++) {
-      submitElements[i].hidden = true;
+      submitElements[i].style.visibility = 'hidden';
     }
   }
 
   function showSubmit() {
     let submitElements = document.getElementsByClassName('submit');
     for (let i = 0; i < submitElements.length; i++) {
-      submitElements[i].hidden = false;
+      submitElements[i].style.visibility = 'visible';
     }
   }
 
